@@ -42,7 +42,7 @@ export function MaskedHeading({
         setShown(true);
         observer.disconnect();
       },
-      { rootMargin: "0px 0px -8% 0px" },
+      { rootMargin: "0px 0px -2% 0px" },
     );
 
     observer.observe(el);
@@ -68,7 +68,7 @@ export function MaskedHeading({
             className="block will-change-transform"
             style={{
               transform: shown ? "none" : "translateY(115%)",
-              transition: `transform 1.05s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 0.08}s`,
+              transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 0.06}s`,
             }}
           >
             {line}

@@ -6,17 +6,21 @@ import type { ReactNode } from "react";
 type Variant = "up" | "left" | "scale";
 
 const initialFor: Record<Variant, { y?: number; x?: number; scale?: number }> = {
-  up: { y: 26 },
-  left: { x: -30 },
-  scale: { scale: 0.96, y: 26 },
+  up: { y: 14 },
+  left: { x: -16 },
+  scale: { scale: 0.98, y: 14 },
 };
 
 /**
- * Scroll reveal — opacity 0 → 1, a small translate, and a blur that resolves.
- * One-shot: `once: true` means content never re-hides on scroll up.
+ * Scroll reveal — opacity 0 → 1 with a small translate. One-shot: `once: true`
+ * means content never re-hides on scroll up.
  *
- * `index` produces the in-section stagger (80ms steps, capped at 5) that the
- * design calls for.
+ * No blur, and deliberately quick. The handoff specified an 850ms reveal with
+ * a blur that resolves, but someone scrolling fast outruns it — they arrive at
+ * a section that is still mid-fade. Content should be readable by the time it
+ * is looked at, so the motion is a short accent rather than an entrance.
+ *
+ * `index` produces the in-section stagger the design calls for.
  */
 export function Reveal({
   children,
@@ -42,14 +46,15 @@ export function Reveal({
   return (
     <Component
       className={className}
-      initial={{ opacity: 0, filter: "blur(8px)", ...initialFor[variant] }}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "0px 0px -12% 0px", amount: 0.08 }}
+      initial={{ opacity: 0, ...initialFor[variant] }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+      /* Starts a little before the element reaches the fold, so it has already
+         settled by the time it is properly in view. */
+      viewport={{ once: true, margin: "0px 0px -4% 0px", amount: 0.01 }}
       transition={{
-        duration: 0.85,
+        duration: 0.4,
         ease: [0.2, 0.7, 0.2, 1],
-        delay: Math.min(index, 5) * 0.08,
-        filter: { duration: 0.85, ease: "easeOut" },
+        delay: Math.min(index, 3) * 0.05,
       }}
     >
       {children}
