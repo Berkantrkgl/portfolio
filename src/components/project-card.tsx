@@ -6,6 +6,7 @@ import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 /**
  * Card shell with the pointer-tracked light. The whole card is a link to the
  * case study, so keyboard users get it for free and the URL is shareable.
+ * The press-down `active` state is what stands in for hover on touch.
  */
 export function ProjectCard({
   href,
@@ -31,7 +32,7 @@ export function ProjectCard({
       href={href}
       onPointerMove={handleMove}
       onPointerLeave={() => setGlow(null)}
-      className={`group relative block overflow-hidden rounded-2xl border border-border bg-surface text-ink transition-[transform,box-shadow,border-color] duration-350 hover:-translate-y-1 hover:border-[oklch(0.82_0.04_60)] hover:shadow-[0_24px_50px_-34px_oklch(0.24_0.012_60/0.4)] ${className}`}
+      className={`group relative block overflow-hidden rounded-2xl border border-border bg-surface text-ink transition-[transform,box-shadow,border-color] duration-350 hover:-translate-y-1 hover:border-[oklch(0.82_0.04_60)] hover:shadow-[0_24px_50px_-34px_oklch(0.24_0.012_60/0.4)] active:scale-[0.985] motion-reduce:transition-none motion-reduce:active:scale-100 ${className}`}
       style={{ transitionTimingFunction: "cubic-bezier(0.2, 0.7, 0.2, 1)" }}
     >
       <div

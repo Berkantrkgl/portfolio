@@ -4,6 +4,19 @@ import { SectionHeading } from "@/components/section-heading";
 import { copy } from "@/content/copy";
 import { projects } from "@/content/projects";
 
+/**
+ * The card-wide link has no hover affordance on touch, so below `sm` the CTA
+ * takes a button's outline to look tappable; from `sm` up it is plain text again.
+ */
+function CardCta() {
+  return (
+    <div className="inline-flex items-center gap-1.5 rounded-[10px] border border-accent-border px-3.5 py-2 font-mono text-[12.5px] font-medium text-accent-link sm:rounded-none sm:border-0 sm:px-0 sm:py-0">
+      {copy.projects.cta}
+      <span aria-hidden>→</span>
+    </div>
+  );
+}
+
 export function Projects() {
   const featured = projects.find((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
@@ -53,8 +66,8 @@ export function Projects() {
                     </div>
                   )}
 
-                  <div className="mt-6.5 font-mono text-[12.5px] font-medium text-accent-link">
-                    {copy.projects.cta}&nbsp;→
+                  <div className="mt-6.5">
+                    <CardCta />
                   </div>
                 </div>
 
@@ -90,8 +103,8 @@ export function Projects() {
                   ))}
                 </ul>
 
-                <div className="mt-5.5 font-mono text-[12.5px] font-medium text-accent-link">
-                  {copy.projects.cta}&nbsp;→
+                <div className="mt-5.5">
+                  <CardCta />
                 </div>
               </ProjectCard>
             </Reveal>

@@ -35,18 +35,19 @@ export const copy = {
 
   intro: {
     /** Three lines; the middle one is accent-coloured. */
-    headline: ["Hi, I'm Berkan —", "backend engineer", "who ships to production."],
+    headline: ["Hi, I'm Berkan —", "backend engineer", "who runs it in production."],
     paragraphs: [
       "I'm a Backend & Cloud Engineer in Istanbul. For the past 1.5 years at NovaDSA I've been building and running production systems on AWS — REST APIs, containerized services on ECS and EKS, and AI-driven features powered by LangGraph and AWS Bedrock for enterprise clients.",
       "My focus now is **Java and Spring Boot** — the stack I'm building my next chapter around. I like systems where the data model does the heavy lifting: clear domains, honest transactions, migrations you can trust, and tests that describe the business instead of the framework.",
       "I studied Mechatronic Systems Engineering, which is probably why I care more about how a system behaves under load than how it looks on a whiteboard. I work in Turkish, English and German.",
     ],
     stats: [
-      { value: 1.5, decimals: 1, suffix: "+", caption: "Years shipping" },
+      { value: 1.5, decimals: 1, suffix: "+", caption: "Years in production" },
       { value: 2, decimals: 0, suffix: "×", caption: "AWS certified" },
     ],
     currentlyLabel: "Currently",
     currently: [
+      "Just launched **QuitQOS** and **PaceUp** — two iOS apps, both live, backend to app store.",
       "Going deep on **Java & Spring Boot** as my target backend stack.",
       "Starting a **veterinary booking platform** — two-sided, for clinics and pet owners.",
       "Deepening **Kubernetes / EKS** and Infrastructure-as-Code.",
@@ -82,7 +83,7 @@ export const copy = {
       },
       {
         category: "Also backend",
-        blurb: "What I ship with day to day at work.",
+        blurb: "What I use day to day at work.",
         items: ["Python", "Django · DRF", "FastAPI", "PostgreSQL", "Flyway", "Redis"],
       },
       {
@@ -104,12 +105,7 @@ export const copy = {
         items: ["AWS Bedrock", "LangGraph", "RAG", "OpenSearch", "Lambda · Kinesis", "Redshift"],
       },
     ] as TechGroup[],
-    pills: [
-      "Turkish — native",
-      "English — professional",
-      "German — professional",
-      "Beşiktaş, İstanbul",
-    ],
+    pills: ["Turkish — native", "English — professional", "German — professional"],
   },
 
   career: {

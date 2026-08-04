@@ -36,7 +36,7 @@ export const projects: Project[] = [
     featured: true,
     category: "Java · Spring Boot",
     title: "QuitQOS",
-    meta: "Habit-tracking iOS app · personal · shipped",
+    meta: "Habit-tracking iOS app · personal · on the App Store",
     summary:
       "A mobile app that helps people quit IQOS and track their recovery — a real-time quit timer and evidence-based health milestones. I built the whole thing end to end: the Java and Spring Boot backend, the React Native app, the design system and the deploy pipeline.",
     highlights: [
