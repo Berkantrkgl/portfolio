@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Architecture diagrams — QuitQOS &amp; PaceUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: oklch(0.985 0.004 90); color: oklch(0.24 0.012 60); font-family: Manrope, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: oklch(0.55 0.14 44); text-decoration: none; }
+  a:hover { color: oklch(0.42 0.12 44); }
+
+  [data-node] { opacity: 0; }
+  [data-edge] { stroke-dasharray: 2400; stroke-dashoffset: 2400; }
+  [data-pulse] { opacity: 0; }
+  [data-elabel] { opacity: 0; }
+
+  .in [data-node] { animation: nodeIn .55s cubic-bezier(.2,.7,.2,1) both; }
+  .in [data-edge] { animation: drawIn .8s cubic-bezier(.4,0,.2,1) both; }
+  .in [data-elabel] { animation: fadeOn .4s both; }
+  .in [data-pulse] { animation: fadeOn .5s both, march 1.3s linear infinite; }
+
+  @keyframes nodeIn { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+  @keyframes drawIn { from { stroke-dashoffset: 2400; } to { stroke-dashoffset: 0; } }
+  @keyframes fadeOn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes march { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -44; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-node], [data-elabel], [data-pulse] { opacity: 1 !important; animation: none !important; transform: none !important; }
+    [data-edge] { stroke-dashoffset: 0 !important; animation: none !important; }
+  }
+</style>
+</helmet>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 56px 32px 110px; display: flex; flex-direction: column; gap: 28px;">
+
+  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+    <h1 style="margin: 0; font-size: 34px; letter-spacing: -0.035em; font-weight: 800;">Architecture diagrams</h1>
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.55 0.01 60);">for the QuitQOS &amp; PaceUp case-study pages</span>
+  </div>
+
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+    <defs>
+      <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="oklch(0.68 0.012 70)"></path>
+      </marker>
+      <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="oklch(0.6 0.16 44)"></path>
+      </marker>
+    </defs>
+  </svg>
+
+  <!-- ══════════════ 1 · QUITQOS SYSTEM ══════════════ -->
+  <figure data-fig="" style="margin: 0; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); overflow: hidden;">
+    <figcaption style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 26px; border-bottom: 1px solid oklch(0.93 0.008 80); background: oklch(0.985 0.004 90);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="width: 7px; height: 7px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+        <span style="font-weight: 800; font-size: 15.5px; letter-spacing: -0.02em;">QuitQOS — system architecture</span>
+      </div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: oklch(0.55 0.01 60);">Java 21 · Spring Boot 4.1 · PostgreSQL · Firebase</span>
+    </figcaption>
+    <div style="padding: 20px 22px 24px;">
+      <svg viewBox="0 0 1160 840" style="width: 100%; height: auto; display: block; font-family: Manrope, sans-serif;">
+
+        <g data-node="" style="animation-delay:.02s">
+          <rect x="60" y="34" width="440" height="150" rx="12" fill="oklch(0.975 0.005 88)" stroke="oklch(0.86 0.01 80)" stroke-width="1" stroke-dasharray="5 4"></rect>
+          <text x="80" y="60" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="1.1" fill="oklch(0.55 0.01 60)">MOBILE · REACT NATIVE 0.85 · EXPO 56</text>
+        </g>
+        <g data-node="" style="animation-delay:.1s">
+          <rect x="84" y="76" width="190" height="88" rx="8" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="100" y="104" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Guest mode</text>
+          <text x="100" y="126" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">AsyncStorage · no backend</text>
+          <text x="100" y="144" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">13 local notifications</text>
+        </g>
+        <g data-node="" style="animation-delay:.16s">
+          <rect x="290" y="76" width="186" height="88" rx="8" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="306" y="104" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Registered</text>
+          <text x="306" y="126" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">server-synced</text>
+          <text x="306" y="144" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">leaderboard + FCM token</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.24s">
+          <rect x="700" y="52" width="400" height="88" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="722" y="82" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">Firebase Auth</text>
+          <text x="722" y="106" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">answers one question: is this really their account?</text>
+          <text x="722" y="124" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">called exactly once per login</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.3s" d="M476,110 H588 V96 H692" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:1s">
+          <rect x="512" y="86" width="66" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="545" y="100" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">sign-in</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.44s" d="M900,140 V206 H262 V266" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:1.2s">
+          <rect x="576" y="196" width="168" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="660" y="210" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">ID token · verified once</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.5s" d="M340,184 V226 H586 V266" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.6" marker-end="url(#arwA)"></path>
+        <path data-pulse="" style="animation-delay:1.3s" d="M340,184 V226 H586 V266" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".55"></path>
+        <g data-elabel="" style="animation-delay:1.25s">
+          <rect x="377" y="216" width="210" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.88 0.04 60)"></rect>
+          <text x="482" y="230" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.55 0.14 44)">Authorization: Bearer &lt;our JWT&gt;</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.34s">
+          <rect x="60" y="266" width="1040" height="404" rx="14" fill="oklch(0.975 0.005 88)" stroke="oklch(0.86 0.01 80)" stroke-dasharray="5 4"></rect>
+          <text x="82" y="292" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="1.1" fill="oklch(0.55 0.14 44)">SPRING BOOT 4.1 · JAVA 21 · com.dayzerosoft.quitqos.backend</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.5s">
+          <rect x="88" y="312" width="304" height="166" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="106" y="338" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.58 0.01 60)">SECURITY/ — FILTER CHAIN · STATELESS</text>
+          <rect x="106" y="352" width="268" height="52" rx="7" fill="oklch(0.985 0.004 90)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="120" y="374" font-size="13" font-weight="700" fill="oklch(0.24 0.012 60)">JwtAuthenticationFilter</text>
+          <text x="120" y="392" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">identifies — never rejects</text>
+          <rect x="106" y="412" width="268" height="52" rx="7" fill="oklch(0.985 0.004 90)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="120" y="434" font-size="13" font-weight="700" fill="oklch(0.24 0.012 60)">SecurityConfig</text>
+          <text x="120" y="452" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">public vs authenticated</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.58s">
+          <rect x="428" y="312" width="304" height="166" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.04 60)" stroke-width="1.4"></rect>
+          <text x="446" y="338" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.55 0.14 44)">WEB/ — REST API · /api/v1</text>
+          <text x="446" y="366" font-size="22" font-weight="800" letter-spacing="-0.5" fill="oklch(0.24 0.012 60)">19 endpoints</text>
+          <text x="446" y="394" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">/auth · /users · /quit-attempts</text>
+          <text x="446" y="414" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">/milestones · /badges · /leaderboard</text>
+          <rect x="446" y="428" width="220" height="24" rx="6" fill="oklch(0.97 0.02 150)" stroke="oklch(0.9 0.02 150)"></rect>
+          <text x="458" y="444" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.45 0.09 150)">/leaderboard/summary — public, no userId</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.66s">
+          <rect x="768" y="312" width="304" height="166" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="786" y="338" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.58 0.01 60)">SERVICE/ — BUSINESS LOGIC</text>
+          <text x="786" y="366" font-size="22" font-weight="800" letter-spacing="-0.5" fill="oklch(0.24 0.012 60)">7 services · 42 tests</text>
+          <text x="786" y="394" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">Auth · User · QuitAttempt</text>
+          <text x="786" y="414" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">Achievement · Leaderboard · Sync</text>
+          <text x="786" y="444" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">MilestoneNotification</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.76s">
+          <rect x="88" y="512" width="304" height="132" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.04 60)" stroke-width="1.4"></rect>
+          <text x="106" y="538" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.55 0.14 44)">@SCHEDULED · EVERY 60s</text>
+          <text x="106" y="562" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">MilestoneNotificationScheduler</text>
+          <text x="106" y="586" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">1 · scan ACTIVE attempts</text>
+          <text x="106" y="604" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">2 · persist achievement + badge</text>
+          <text x="106" y="622" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">3 · then send push (never before)</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.82s">
+          <rect x="428" y="512" width="304" height="132" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="446" y="538" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.58 0.01 60)">REPOSITORY/ — SPRING DATA JPA</text>
+          <text x="446" y="564" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Entities</text>
+          <text x="446" y="588" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">User · QuitAttempt · Milestone</text>
+          <text x="446" y="606" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">Badge · UserMilestone · RefreshToken</text>
+          <text x="446" y="628" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.55 0.14 44)">ddl-auto = validate</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.88s">
+          <rect x="768" y="512" width="304" height="132" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="786" y="538" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.58 0.01 60)">FLYWAY — SCHEMA OWNER</text>
+          <text x="786" y="564" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">7 versioned migrations</text>
+          <text x="786" y="588" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">V1 schema → V7 locale + en content</text>
+          <text x="786" y="612" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.55 0.14 44)">partial unique index:</text>
+          <text x="786" y="630" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.55 0.14 44)">one ACTIVE attempt per user</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.9s" d="M392,395 H420" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:.96s" d="M732,395 H760" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:1.02s" d="M920,478 V494 H586 V504" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:1.06s" d="M392,578 H420" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:1.1s" d="M732,578 H760" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)" stroke-dasharray="4 4"></path>
+
+        <g data-node="" style="animation-delay:1.06s">
+          <rect x="428" y="712" width="304" height="88" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="448" y="744" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">PostgreSQL</text>
+          <text x="448" y="768" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">app_user · quit_attempt · milestone</text>
+          <text x="448" y="786" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">badge · user_milestone · refresh_token</text>
+        </g>
+        <g data-node="" style="animation-delay:1.14s">
+          <rect x="790" y="712" width="282" height="88" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="810" y="744" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">Firebase Cloud Messaging</text>
+          <text x="810" y="768" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">milestone push to device</text>
+          <text x="810" y="786" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">stub / real sender seam</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:1.12s" d="M586,644 V712" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-pulse="" style="animation-delay:1.9s" d="M586,644 V712" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".5"></path>
+        <path data-edge="" style="animation-delay:1.18s" d="M240,644 V680 H931 V712" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.6" marker-end="url(#arwA)"></path>
+        <path data-pulse="" style="animation-delay:2s" d="M240,644 V680 H931 V712" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".5"></path>
+
+        <path data-edge="" style="animation-delay:1.24s" d="M1072,756 H1130 V18 H340 V34" fill="none" stroke="oklch(0.82 0.012 70)" stroke-width="1.3" stroke-dasharray="5 5" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:2.1s">
+          <rect x="640" y="8" width="126" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="703" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">push notification</text>
+        </g>
+      </svg>
+    </div>
+  </figure>
+
+  <!-- ══════════════ 2 · QUITQOS TOKEN FLOW ══════════════ -->
+  <figure data-fig="" style="margin: 0; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); overflow: hidden;">
+    <figcaption style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 26px; border-bottom: 1px solid oklch(0.93 0.008 80); background: oklch(0.985 0.004 90);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="width: 7px; height: 7px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+        <span style="font-weight: 800; font-size: 15.5px; letter-spacing: -0.02em;">QuitQOS — two identities, never mixed</span>
+      </div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: oklch(0.55 0.01 60);">token issue &amp; rotation</span>
+    </figcaption>
+    <div style="padding: 20px 22px 24px;">
+      <svg viewBox="0 0 1160 400" style="width: 100%; height: auto; display: block; font-family: Manrope, sans-serif;">
+
+        <g data-node="" style="animation-delay:.02s">
+          <rect x="30" y="60" width="220" height="96" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="50" y="90" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">App</text>
+          <text x="50" y="114" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">Google / Apple sign-in</text>
+          <text x="50" y="132" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">→ Firebase ID token</text>
+        </g>
+        <path data-edge="" style="animation-delay:.2s" d="M250,108 H322" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:.9s"><text x="286" y="98" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">POST</text></g>
+
+        <g data-node="" style="animation-delay:.24s">
+          <rect x="330" y="46" width="280" height="124" rx="10" fill="oklch(0.99 0.008 60)" stroke="oklch(0.86 0.04 60)" stroke-width="1.4"></rect>
+          <text x="350" y="74" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.55 0.14 44)">POST /auth/firebase</text>
+          <text x="350" y="100" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Backend verifies once</text>
+          <text x="350" y="124" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">upsert User · derive username</text>
+          <text x="350" y="142" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">Firebase is never called again</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.42s" d="M610,86 H660 V70 H712" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.5" marker-end="url(#arwA)"></path>
+        <path data-edge="" style="animation-delay:.48s" d="M610,130 H660 V214 H712" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.5" marker-end="url(#arwA)"></path>
+
+        <g data-node="" style="animation-delay:.56s">
+          <rect x="720" y="30" width="410" height="80" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="740" y="58" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Access JWT · ~1 hour</text>
+          <text x="740" y="82" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">self-contained, HMAC-signed — stored nowhere</text>
+          <text x="740" y="100" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">short-lived, so a leak stays cheap</text>
+        </g>
+        <g data-node="" style="animation-delay:.62s">
+          <rect x="720" y="174" width="410" height="80" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="740" y="202" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Refresh token · ~180 days</text>
+          <text x="740" y="226" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">stored in DB as SHA-256 hash — raw value never kept</text>
+          <text x="740" y="244" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">long-lived but revocable on logout</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.74s">
+          <rect x="330" y="250" width="280" height="112" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="350" y="278" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.55 0.14 44)">POST /auth/refresh</text>
+          <text x="350" y="304" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">One-time rotation</text>
+          <text x="350" y="328" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">look up by hash → delete old row</text>
+          <text x="350" y="346" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">→ issue a fresh pair</text>
+        </g>
+        <path data-edge="" style="animation-delay:.86s" d="M900,254 V306 H618" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-pulse="" style="animation-delay:1.5s" d="M900,254 V306 H618" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".5"></path>
+        <path data-edge="" style="animation-delay:.94s" d="M330,306 H140 V166" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:1.5s">
+          <rect x="146" y="296" width="168" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="230" y="310" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">user never sees login again</text>
+        </g>
+      </svg>
+    </div>
+  </figure>
+
+  <!-- ══════════════ 3 · PACEUP SYSTEM ══════════════ -->
+  <figure data-fig="" style="margin: 0; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); overflow: hidden;">
+    <figcaption style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 26px; border-bottom: 1px solid oklch(0.93 0.008 80); background: oklch(0.985 0.004 90);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="width: 7px; height: 7px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+        <span style="font-weight: 800; font-size: 15.5px; letter-spacing: -0.02em;">PaceUp — three services, one monorepo</span>
+      </div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: oklch(0.55 0.01 60);">Django 6 · FastAPI · LangGraph · Hetzner</span>
+    </figcaption>
+    <div style="padding: 20px 22px 24px;">
+      <svg viewBox="0 0 1280 800" style="width: 100%; height: auto; display: block; font-family: Manrope, sans-serif;">
+
+        <g data-node="" style="animation-delay:.02s">
+          <rect x="470" y="24" width="340" height="92" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="492" y="54" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">mobile — Expo / React Native</text>
+          <text x="492" y="78" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">TypeScript · Expo Router · RevenueCat</text>
+          <text x="492" y="96" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">calendar plans · AI coach chat · reminders</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.16s" d="M560,116 V160 H470 V214" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:.9s">
+          <rect x="330" y="150" width="126" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="393" y="164" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">REST · api.paceup</text>
+        </g>
+        <path data-edge="" style="animation-delay:.22s" d="M720,116 V160 H610 V214" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.5" marker-end="url(#arwA)"></path>
+        <path data-pulse="" style="animation-delay:1.4s" d="M720,116 V160 H610 V214" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".5"></path>
+        <g data-elabel="" style="animation-delay:.95s">
+          <rect x="740" y="150" width="146" height="20" rx="5" fill="oklch(1 0 0)" stroke="oklch(0.88 0.04 60)"></rect>
+          <text x="813" y="164" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.55 0.14 44)">SSE stream · chatbot.</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.3s">
+          <rect x="60" y="178" width="960" height="420" rx="14" fill="oklch(0.975 0.005 88)" stroke="oklch(0.86 0.01 80)" stroke-dasharray="5 4"></rect>
+          <text x="82" y="204" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="1.1" fill="oklch(0.55 0.01 60)">HETZNER · paceup-prod-1 — docker compose -p paceup (moved off AWS ECS Fargate)</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.4s">
+          <rect x="350" y="214" width="360" height="78" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="372" y="244" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">Caddy — automatic HTTPS</text>
+          <text x="372" y="268" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">certs issued + renewed automatically</text>
+          <text x="372" y="284" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.55 0.14 44)">TLS volume survives deploys via -p paceup</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.5s" d="M430,292 V322 H275 V352" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:1.1s"><text x="212" y="316" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">django:8000</text></g>
+        <path data-edge="" style="animation-delay:.56s" d="M630,292 V322 H785 V352" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:1.15s"><text x="806" y="316" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">graph-api:8001</text></g>
+
+        <g data-node="" style="animation-delay:.64s">
+          <rect x="100" y="352" width="350" height="212" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.04 60)" stroke-width="1.4"></rect>
+          <text x="120" y="378" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.55 0.14 44)">BACKEND/ — DJANGO 6 + DRF</text>
+          <text x="120" y="404" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">6 apps</text>
+          <text x="120" y="430" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">users · programs · activity</text>
+          <text x="120" y="450" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">gamification · notifications · analytics</text>
+          <text x="120" y="480" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">SimpleJWT · Google / Apple sign-in</text>
+          <text x="120" y="500" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">django-q2 async tasks · S3 media</text>
+          <rect x="120" y="514" width="310" height="30" rx="7" fill="oklch(0.985 0.004 90)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="134" y="534" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.42 0.01 60)">4 signal receivers — the event-driven core</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.72s">
+          <rect x="610" y="352" width="350" height="212" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="630" y="378" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.58 0.01 60)">CHATAPI/ — FASTAPI + LANGGRAPH</text>
+          <text x="630" y="404" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">AI running coach</text>
+          <text x="630" y="430" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">POST /chat-stream (SSE) · GET /health</text>
+          <text x="630" y="450" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">checkpointer — survives redeploy</text>
+          <rect x="630" y="466" width="148" height="78" rx="7" fill="oklch(0.985 0.004 90)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="642" y="486" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.58 0.01 60)">UI TOOLS</text>
+          <text x="642" y="506" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.45 0.01 60)">opens a typed form</text>
+          <text x="642" y="524" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.45 0.01 60)">in the app, not text</text>
+          <rect x="792" y="466" width="148" height="78" rx="7" fill="oklch(0.99 0.008 60)" stroke="oklch(0.88 0.04 60)"></rect>
+          <text x="804" y="486" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.55 0.14 44)">BACKEND TOOLS</text>
+          <text x="804" y="506" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.45 0.01 60)">create_workout_plan</text>
+          <text x="804" y="524" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.45 0.01 60)">the only side effect</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.86s" d="M450,458 H602" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" stroke-dasharray="5 4" marker-start="url(#arw)" marker-end="url(#arw)"></path>
+        <g data-elabel="" style="animation-delay:1.3s">
+          <rect x="452" y="424" width="156" height="30" rx="6" fill="oklch(1 0 0)" stroke="oklch(0.9 0.008 80)"></rect>
+          <text x="530" y="438" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="oklch(0.5 0.01 60)">same DJANGO_SECRET_KEY</text>
+          <text x="530" y="450" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="oklch(0.5 0.01 60)">HS256 — one auth system</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.8s">
+          <rect x="1040" y="404" width="200" height="108" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="1060" y="434" font-size="14.5" font-weight="700" fill="oklch(0.24 0.012 60)">AWS Bedrock</text>
+          <text x="1060" y="458" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">LLM inference</text>
+          <text x="1060" y="476" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">via LangChain</text>
+        </g>
+        <path data-edge="" style="animation-delay:.94s" d="M960,458 H1032" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+
+        <g data-node="" style="animation-delay:.98s">
+          <rect x="350" y="666" width="380" height="92" rx="10" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="372" y="696" font-size="15" font-weight="700" fill="oklch(0.24 0.012 60)">Aiven managed PostgreSQL</text>
+          <text x="372" y="720" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">external — no database container on the box</text>
+          <text x="372" y="740" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">shared by django and graph-api</text>
+        </g>
+        <path data-edge="" style="animation-delay:1.04s" d="M275,564 V622 H470 V658" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:1.1s" d="M785,564 V622 H610 V658" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+
+        <g data-node="" style="animation-delay:1.16s">
+          <rect x="1040" y="600" width="200" height="158" rx="10" fill="oklch(0.975 0.005 88)" stroke="oklch(0.86 0.01 80)" stroke-dasharray="5 4"></rect>
+          <text x="1058" y="626" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.55 0.14 44)">CI/CD</text>
+          <text x="1058" y="650" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">GitHub Actions</text>
+          <text x="1058" y="674" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">push to main</text>
+          <text x="1058" y="692" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">→ paths-filter</text>
+          <text x="1058" y="710" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">→ ssh to host</text>
+          <text x="1058" y="728" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">→ rebuild only the</text>
+          <text x="1058" y="746" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.5 0.01 60)">   changed service</text>
+        </g>
+        <path data-edge="" style="animation-delay:1.22s" d="M1040,672 H1000 V598" fill="none" stroke="oklch(0.82 0.012 70)" stroke-width="1.3" stroke-dasharray="4 4" marker-end="url(#arw)"></path>
+      </svg>
+    </div>
+  </figure>
+
+  <!-- ══════════════ 4 · PACEUP SIGNAL CHAIN ══════════════ -->
+  <figure data-fig="" style="margin: 0; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); overflow: hidden;">
+    <figcaption style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 26px; border-bottom: 1px solid oklch(0.93 0.008 80); background: oklch(0.985 0.004 90);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="width: 7px; height: 7px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+        <span style="font-weight: 800; font-size: 15.5px; letter-spacing: -0.02em;">PaceUp — one save, four independent effects</span>
+      </div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: oklch(0.55 0.01 60);">Django signal chain</span>
+    </figcaption>
+    <div style="padding: 20px 22px 24px;">
+      <svg viewBox="0 0 1160 440" style="width: 100%; height: auto; display: block; font-family: Manrope, sans-serif;">
+
+        <g data-node="" style="animation-delay:.02s">
+          <rect x="30" y="150" width="252" height="104" rx="10" fill="oklch(0.99 0.008 60)" stroke="oklch(0.86 0.04 60)" stroke-width="1.4"></rect>
+          <text x="52" y="180" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.55 0.14 44)">POST_SAVE</text>
+          <text x="52" y="208" font-size="16" font-weight="800" letter-spacing="-0.3" fill="oklch(0.24 0.012 60)">WorkoutResult saved</text>
+          <text x="52" y="232" font-family="JetBrains Mono, monospace" font-size="10.5" fill="oklch(0.52 0.01 60)">the user finishes one run</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.18s" d="M282,202 H332 V64 H372" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:.24s" d="M282,202 H332 V148 H372" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:.3s" d="M282,202 H332 V232 H372" fill="none" stroke="oklch(0.78 0.012 70)" stroke-width="1.4" marker-end="url(#arw)"></path>
+        <path data-edge="" style="animation-delay:.36s" d="M282,202 H332 V316 H372" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.5" marker-end="url(#arwA)"></path>
+        <path data-pulse="" style="animation-delay:1.3s" d="M282,202 H332 V316 H372" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".5"></path>
+
+        <g data-node="" style="animation-delay:.3s">
+          <rect x="380" y="32" width="330" height="64" rx="9" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="400" y="58" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">Workout marked completed</text>
+          <text x="400" y="78" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">is_completed = True · status = completed</text>
+        </g>
+        <g data-node="" style="animation-delay:.38s">
+          <rect x="380" y="116" width="330" height="64" rx="9" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="400" y="142" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">Program counter incremented</text>
+          <text x="400" y="162" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.55 0.14 44)">F() expression — atomic, race-proof</text>
+        </g>
+        <g data-node="" style="animation-delay:.46s">
+          <rect x="380" y="200" width="330" height="64" rx="9" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="400" y="226" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">User stats recalculated</text>
+          <text x="400" y="246" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">distance · duration · current + longest streak</text>
+        </g>
+        <g data-node="" style="animation-delay:.54s">
+          <rect x="380" y="284" width="330" height="64" rx="9" fill="oklch(0.99 0.008 60)" stroke="oklch(0.86 0.04 60)" stroke-width="1.4"></rect>
+          <text x="400" y="310" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">Achievement check</text>
+          <text x="400" y="330" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">post_save on User · gamification app</text>
+        </g>
+
+        <path data-edge="" style="animation-delay:.66s" d="M710,316 H772" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.5" marker-end="url(#arwA)"></path>
+        <g data-node="" style="animation-delay:.72s">
+          <rect x="780" y="284" width="170" height="64" rx="9" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="798" y="310" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">Notification</text>
+          <text x="798" y="330" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">post_save on Achievement</text>
+        </g>
+        <path data-edge="" style="animation-delay:.8s" d="M950,316 H1012" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="1.5" marker-end="url(#arwA)"></path>
+        <path data-pulse="" style="animation-delay:1.6s" d="M710,316 H772 M950,316 H1012" fill="none" stroke="oklch(0.6 0.16 44)" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round" opacity=".5"></path>
+        <g data-node="" style="animation-delay:.86s">
+          <rect x="1020" y="284" width="118" height="64" rx="9" fill="oklch(1 0 0)" stroke="oklch(0.86 0.01 80)"></rect>
+          <text x="1038" y="310" font-size="13.5" font-weight="700" fill="oklch(0.24 0.012 60)">Push</text>
+          <text x="1038" y="330" font-family="JetBrains Mono, monospace" font-size="10" fill="oklch(0.52 0.01 60)">to device</text>
+        </g>
+
+        <g data-node="" style="animation-delay:.96s">
+          <rect x="30" y="360" width="1108" height="52" rx="9" fill="oklch(0.975 0.005 88)" stroke="oklch(0.88 0.008 80)" stroke-dasharray="5 4"></rect>
+          <text x="52" y="382" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="oklch(0.58 0.01 60)">POST_DELETE</text>
+          <text x="52" y="400" font-family="JetBrains Mono, monospace" font-size="11" fill="oklch(0.45 0.01 60)">Deleting the result unwinds the same chain in reverse — counters, stats and streaks stay honest.</text>
+        </g>
+      </svg>
+    </div>
+  </figure>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const figs = Array.from(document.querySelectorAll('[data-fig]'));
+    if (!('IntersectionObserver' in window)) { figs.forEach(f => f.classList.add('in')); return; }
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); this._io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    figs.forEach(f => this._io.observe(f));
+    this._t = setTimeout(() => figs.forEach(f => f.classList.add('in')), 4000);
+  }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._t) clearTimeout(this._t);
+  }
+}
+</script>
+</body>
+</html>

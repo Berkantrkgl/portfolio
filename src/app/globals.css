@@ -1,26 +1,286 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Design tokens — from docs/design/website/README.md
+   Light theme, warm neutral. All colours in oklch(); keep as-is.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Surfaces */
+  --color-bg: oklch(0.985 0.004 90);
+  --color-surface: oklch(1 0 0);
+  --color-surface-muted: oklch(0.96 0.006 85);
+  --color-band: oklch(0.975 0.005 88);
+
+  /* Ink */
+  --color-ink: oklch(0.24 0.012 60);
+  --color-ink-lead: oklch(0.3 0.012 60);
+  --color-ink-2: oklch(0.36 0.012 60);
+  --color-ink-body: oklch(0.4 0.012 60);
+  --color-ink-soft: oklch(0.44 0.012 60);
+  --color-ink-3: oklch(0.5 0.01 60);
+  --color-ink-meta: oklch(0.55 0.01 60);
+  --color-ink-label: oklch(0.58 0.01 60);
+  --color-ink-nav: oklch(0.45 0.01 60);
+
+  /* Lines */
+  --color-border: oklch(0.9 0.008 80);
+  --color-border-soft: oklch(0.92 0.008 80);
+  --color-border-inner: oklch(0.93 0.008 80);
+  --color-border-strong: oklch(0.85 0.01 80);
+  --color-hairline: oklch(0.86 0.01 80);
+
+  /* Accent */
+  --color-accent: oklch(0.6 0.16 44);
+  --color-accent-link: oklch(0.55 0.14 44);
+  --color-accent-link-hover: oklch(0.42 0.12 44);
+  --color-accent-border: oklch(0.86 0.04 60);
+  --color-accent-hover-border: oklch(0.82 0.04 60);
+  --color-arrow: oklch(0.72 0.02 80);
+  --color-slash: oklch(0.78 0.06 60);
+
+  /* Success (availability badge) */
+  --color-success: oklch(0.45 0.09 150);
+  --color-success-bg: oklch(0.97 0.02 150);
+  --color-success-border: oklch(0.88 0.02 150);
+  --color-success-dot: oklch(0.62 0.14 150);
+
+  /* Text on the dark CTA band and dark buttons */
+  --color-inverse: oklch(0.985 0.004 90);
+  --color-inverse-body: oklch(0.78 0.01 80);
+
+  /* Type */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Easing vocabulary */
+  --ease-reveal: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-mask: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sheet: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ---------------------------------------------------------------------------
+   Element defaults.
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+   These MUST stay inside `@layer base`. Plain CSS written after
+   `@import "tailwindcss"` lands in a LATER cascade layer than the utilities,
+   so an unlayered `a { color: … }` outranks `text-inverse` no matter how
+   specific the class is — which is exactly what painted every dark button's
+   label in body ink and made it vanish against its own background.
+--------------------------------------------------------------------------- */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Links inherit; buttons, cards and the footer set their own colour. */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: oklch(0.9 0.06 60);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Breaks an element out of the centred content column to span the viewport.
+   `body` clips the overflow, so the scrollbar width that 100vw ignores can't
+   turn into a horizontal scroll. */
+.full-bleed {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+}
+
+/* --- Load-time entrance animations (hero only; scroll reveals use Motion) --- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes lineUp {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes lineIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.8s both;
+}
+
+.animate-line-in {
+  transform-origin: left;
+  animation: lineIn 0.8s 0.3s both;
+}
+
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+
+/* Hero h1: three lines rising out of their own clipping box.
+
+   The clip box needs room for descenders — g, y, p — or `overflow: hidden`
+   shears their tails off. Padding alone would space the lines out, so the
+   box is padded and then pulled back up by the same amount. */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.hero-line > span {
+  display: block;
+  animation: lineUp 1s var(--ease-mask) both;
+}
+
+/* --- Architecture diagrams -------------------------------------------------
+   Four element roles inside an SVG, revealed when the figure scrolls in.
+   Per-element `animation-delay` is set inline in each diagram component; the
+   sequencing was hand-tuned in the handoff, so don't reshuffle it here.
+--------------------------------------------------------------------------- */
+
+[data-node],
+[data-pulse],
+[data-elabel] {
+  opacity: 0;
+}
+
+[data-edge] {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+}
+
+.diagram-in [data-node] {
+  animation: nodeIn 0.55s var(--ease-reveal) both;
+}
+
+.diagram-in [data-edge] {
+  animation: drawIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.diagram-in [data-elabel] {
+  animation: fadeOn 0.4s both;
+}
+
+/* Dots travelling along a highlighted flow, forever. */
+.diagram-in [data-pulse] {
+  animation:
+    fadeOn 0.5s both,
+    march 1.3s linear infinite;
+}
+
+@keyframes nodeIn {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes drawIn {
+  from {
+    stroke-dashoffset: 2400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeOn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes march {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+
+/* --- Reduced motion neutralises everything --- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-rise,
+  .animate-line-in,
+  .animate-marquee,
+  .hero-line > span {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-node],
+  [data-elabel],
+  [data-pulse] {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  [data-edge] {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
 }

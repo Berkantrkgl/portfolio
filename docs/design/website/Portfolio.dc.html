@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Berkan Türkoğlu — Backend Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: oklch(0.985 0.004 90); color: oklch(0.24 0.012 60); font-family: Manrope, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: oklch(0.55 0.14 44); text-decoration: none; }
+  a:hover { color: oklch(0.42 0.12 44); }
+  ::selection { background: oklch(0.9 0.06 60); }
+  [data-reveal] { opacity: 0; transform: translateY(26px); filter: blur(8px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1), filter .85s ease; }
+  [data-reveal].in { opacity: 1; transform: none; filter: none; }
+  [data-reveal="left"] { transform: translateX(-30px); }
+  [data-reveal="scale"] { transform: scale(0.96) translateY(26px); }
+  [data-mask] { overflow: hidden; }
+  [data-mask] > span { display: block; transform: translateY(115%); transition: transform 1.05s cubic-bezier(.16,1,.3,1); }
+  [data-mask].in > span { transform: none; }
+  @keyframes lineUp { from { transform: translateY(115%); } to { transform: none; } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], [data-mask] > span { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; animation: none !important; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes lineIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sheetIn { from { opacity: 0; transform: translateY(28px) scale(0.99); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; overflow-x: hidden;">
+
+  <div style="position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; background: transparent;">
+    <div data-progress="" style="height: 100%; width: 0%; background: oklch(0.6 0.16 44);"></div>
+  </div>
+
+  <header style="position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); background: oklch(0.985 0.004 90 / 0.82); border-bottom: 1px solid oklch(0.9 0.008 80);">
+    <div data-headbar="" style="max-width: 1120px; margin: 0 auto; padding: 0 32px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: height .4s cubic-bezier(.2,.7,.2,1);">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; color: inherit;">
+        <span style="width: 10px; height: 10px; border-radius: 2px; background: oklch(0.6 0.16 44); display: inline-block;"></span>
+        <span style="font-weight: 800; letter-spacing: -0.02em; font-size: 15px;">Berkan Türkoğlu</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 4px;">
+        <a data-nav="about" href="#about" style="padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; color: oklch(0.45 0.01 60);" style-hover="background: oklch(0.94 0.008 80); color: oklch(0.24 0.012 60);">About</a>
+        <a data-nav="career" href="#career" style="padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; color: oklch(0.45 0.01 60);" style-hover="background: oklch(0.94 0.008 80); color: oklch(0.24 0.012 60);">Career</a>
+        <a data-nav="projects" href="#projects" style="padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; color: oklch(0.45 0.01 60);" style-hover="background: oklch(0.94 0.008 80); color: oklch(0.24 0.012 60);">Projects</a>
+        <a data-nav="education" href="#education" style="padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; color: oklch(0.45 0.01 60);" style-hover="background: oklch(0.94 0.008 80); color: oklch(0.24 0.012 60);">Education</a>
+        <a href="mailto:berkan.trkgl35@gmail.com" style="margin-left: 10px; padding: 9px 18px; border-radius: 999px; font-size: 14px; font-weight: 700; background: oklch(0.24 0.012 60); color: oklch(0.985 0.004 90);" style-hover="background: oklch(0.6 0.16 44);">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" style="max-width: 1120px; margin: 0 auto; padding: 0 32px;">
+
+    <section style="padding: 88px 0 80px; display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: start;">
+      <div data-parallax="0.05" style="animation: rise .8s both;">
+        <div style="position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; border: 1px solid oklch(0.9 0.008 80); background: oklch(0.965 0.006 85);">
+          <image-slot id="portrait" shape="rect" placeholder="portrait photo · 4:5"></image-slot>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+          <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 12px; padding: 14px 16px; background: oklch(1 0 0);">
+            <div data-count-to="1.5" data-count-dec="1" data-count-suffix="+" data-reveal="" style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">1.5+</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.55 0.01 60); margin-top: 3px;">Years shipping</div>
+          </div>
+          <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 12px; padding: 14px 16px; background: oklch(1 0 0);">
+            <div data-count-to="2" data-count-dec="0" data-count-suffix="×" data-reveal="" style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">2×</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.55 0.01 60); margin-top: 3px;">AWS certified</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <sc-if value="{{ showAvailabilityBadge }}" hint-placeholder-val="{{ true }}">
+          <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 10px; border: 1px solid oklch(0.88 0.02 150); border-radius: 999px; background: oklch(0.97 0.02 150); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.45 0.09 150); animation: rise .6s both;">
+            <span style="width: 6px; height: 6px; border-radius: 999px; background: oklch(0.62 0.14 150);"></span>
+            Open to Java / backend roles
+          </div>
+        </sc-if>
+        <h1 style="margin: 20px 0 0; font-size: 64px; line-height: 1.04; letter-spacing: -0.045em; font-weight: 800;">
+          <span style="display: block; overflow: hidden; padding-bottom: 2px;"><span style="display: block; animation: lineUp 1s cubic-bezier(.16,1,.3,1) .05s both;">Hi, I&rsquo;m Berkan —</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 2px;"><span style="display: block; animation: lineUp 1s cubic-bezier(.16,1,.3,1) .16s both; color: oklch(0.6 0.16 44);">backend engineer</span></span>
+          <span style="display: block; overflow: hidden; padding-bottom: 4px;"><span style="display: block; animation: lineUp 1s cubic-bezier(.16,1,.3,1) .27s both;">who ships to production.</span></span>
+        </h1>
+        <div style="height: 1px; background: oklch(0.86 0.01 80); margin: 30px 0 26px; transform-origin: left; animation: lineIn .8s .3s both;"></div>
+        <div style="display: flex; flex-direction: column; gap: 18px; animation: rise .7s .18s both;">
+          <p style="margin: 0; font-size: 19px; line-height: 1.6; color: oklch(0.3 0.012 60); text-wrap: pretty;">
+            I&rsquo;m a Backend &amp; Cloud Engineer in Istanbul. For the past 1.5 years at NovaDSA I&rsquo;ve been building and running production systems on AWS — REST APIs, containerized services on ECS and EKS, and AI-driven features powered by LangGraph and AWS Bedrock for enterprise clients.
+          </p>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: oklch(0.44 0.012 60); text-wrap: pretty;">
+            My focus now is <strong style="font-weight: 700; color: oklch(0.3 0.012 60);">Java and Spring Boot</strong> — the stack I&rsquo;m building my next chapter around. I like systems where the data model does the heavy lifting: clear domains, honest transactions, migrations you can trust, and tests that describe the business instead of the framework.
+          </p>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: oklch(0.44 0.012 60); text-wrap: pretty;">
+            I studied Mechatronic Systems Engineering, which is probably why I care more about how a system behaves under load than how it looks on a whiteboard. I work in Turkish, English and German.
+          </p>
+        </div>
+
+        <div style="margin-top: 32px; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px 26px; animation: rise .7s .24s both;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.6 0.16 44);">Currently</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+            <div style="display: flex; gap: 12px; font-size: 15.5px; line-height: 1.55; color: oklch(0.36 0.012 60);"><span style="color: oklch(0.72 0.02 80);">→</span><span>Going deep on <strong style="font-weight: 700;">Java &amp; Spring Boot</strong> as my target backend stack.</span></div>
+            <div style="display: flex; gap: 12px; font-size: 15.5px; line-height: 1.55; color: oklch(0.36 0.012 60);"><span style="color: oklch(0.72 0.02 80);">→</span><span>Building <strong style="font-weight: 700;">QuitQOS</strong> on a Spring Boot backend — in active development.</span></div>
+            <div style="display: flex; gap: 12px; font-size: 15.5px; line-height: 1.55; color: oklch(0.36 0.012 60);"><span style="color: oklch(0.72 0.02 80);">→</span><span>Deepening <strong style="font-weight: 700;">Kubernetes / EKS</strong> and Infrastructure-as-Code.</span></div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; animation: rise .7s .3s both;">
+          <a href="mailto:berkan.trkgl35@gmail.com" style="padding: 13px 24px; border-radius: 10px; background: oklch(0.24 0.012 60); color: oklch(0.985 0.004 90); font-weight: 700; font-size: 15px;" style-hover="background: oklch(0.6 0.16 44);">Email me</a>
+          <a href="https://github.com/Berkantrkgl" target="_blank" rel="noreferrer" style="padding: 13px 24px; border-radius: 10px; border: 1px solid oklch(0.85 0.01 80); color: oklch(0.24 0.012 60); font-weight: 700; font-size: 15px; background: oklch(1 0 0);" style-hover="border-color: oklch(0.6 0.16 44); color: oklch(0.6 0.16 44);">GitHub</a>
+          <a href="https://linkedin.com/in/berkanturkoglu/" target="_blank" rel="noreferrer" style="padding: 13px 24px; border-radius: 10px; border: 1px solid oklch(0.85 0.01 80); color: oklch(0.24 0.012 60); font-weight: 700; font-size: 15px; background: oklch(1 0 0);" style-hover="border-color: oklch(0.6 0.16 44); color: oklch(0.6 0.16 44);">LinkedIn</a>
+          <a href="#" style="padding: 13px 24px; border-radius: 10px; border: 1px solid oklch(0.85 0.01 80); color: oklch(0.24 0.012 60); font-weight: 700; font-size: 15px; background: oklch(1 0 0);" style-hover="border-color: oklch(0.6 0.16 44); color: oklch(0.6 0.16 44);">Résumé (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="padding: 80px 0 24px; border-top: 1px solid oklch(0.92 0.008 80);">
+      <div data-reveal="" data-section="about" style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.6 0.16 44); letter-spacing: 0.08em;">01</span>
+        <h2 data-mask="" style="margin: 0; font-size: 40px; letter-spacing: -0.035em; font-weight: 800; padding-bottom: 4px;"><span>Tech I work with</span></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <div data-reveal="" style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 24px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.6 0.16 44);">Backend · focus</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; color: oklch(0.34 0.012 60);">
+            <span>Java 21</span><span>Spring Boot</span><span>Spring JPA · Security</span><span>Maven · JUnit · Mockito</span><span>REST design · JWT</span>
+          </div>
+        </div>
+        <div data-reveal="" style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 24px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Also backend</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; color: oklch(0.34 0.012 60);">
+            <span>Python</span><span>Django · DRF</span><span>FastAPI</span><span>PostgreSQL · Flyway</span><span>Redis</span>
+          </div>
+        </div>
+        <div data-reveal="" style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 24px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Cloud / DevOps</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; color: oklch(0.34 0.012 60);">
+            <span>AWS · ECS Fargate</span><span>Kubernetes (EKS)</span><span>Docker</span><span>GitHub Actions · ArgoCD</span><span>Linux · Bash</span>
+          </div>
+        </div>
+        <div data-reveal="" style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 24px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Data / AI</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; color: oklch(0.34 0.012 60);">
+            <span>AWS Bedrock</span><span>LangGraph · RAG</span><span>OpenSearch</span><span>Lambda · Kinesis</span><span>Redshift</span>
+          </div>
+        </div>
+      </div>
+      <sc-if value="{{ showLanguages }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 12px; border-radius: 999px; border: 1px solid oklch(0.9 0.008 80); color: oklch(0.45 0.01 60);">Turkish — native</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 12px; border-radius: 999px; border: 1px solid oklch(0.9 0.008 80); color: oklch(0.45 0.01 60);">English — professional</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 12px; border-radius: 999px; border: 1px solid oklch(0.9 0.008 80); color: oklch(0.45 0.01 60);">German — professional</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 12px; border-radius: 999px; border: 1px solid oklch(0.9 0.008 80); color: oklch(0.45 0.01 60);">Beşiktaş, İstanbul</span>
+        </div>
+      </sc-if>
+    </section>
+
+    <div style="width: 100vw; margin: 72px 0 0 calc(50% - 50vw); border-top: 1px solid oklch(0.92 0.008 80); border-bottom: 1px solid oklch(0.92 0.008 80); padding: 24px 0; overflow: hidden; background: oklch(0.975 0.005 88);">
+      <div style="display: flex; width: max-content; animation: marquee 42s linear infinite;">
+        <div style="display: flex; gap: 36px; padding-right: 36px; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: oklch(0.6 0.01 60); white-space: nowrap;">
+          <span>Java 21</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Spring Boot</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Spring Security</span><span style="color: oklch(0.78 0.06 60);">/</span><span>PostgreSQL</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Flyway</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Docker</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Kubernetes</span><span style="color: oklch(0.78 0.06 60);">/</span><span>AWS</span><span style="color: oklch(0.78 0.06 60);">/</span><span>ECS Fargate</span><span style="color: oklch(0.78 0.06 60);">/</span><span>GitHub Actions</span><span style="color: oklch(0.78 0.06 60);">/</span><span>ArgoCD</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Django</span><span style="color: oklch(0.78 0.06 60);">/</span><span>FastAPI</span><span style="color: oklch(0.78 0.06 60);">/</span><span>LangGraph</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Bedrock</span><span style="color: oklch(0.78 0.06 60);">/</span>
+        </div>
+        <div style="display: flex; gap: 36px; padding-right: 36px; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: oklch(0.6 0.01 60); white-space: nowrap;">
+          <span>Java 21</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Spring Boot</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Spring Security</span><span style="color: oklch(0.78 0.06 60);">/</span><span>PostgreSQL</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Flyway</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Docker</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Kubernetes</span><span style="color: oklch(0.78 0.06 60);">/</span><span>AWS</span><span style="color: oklch(0.78 0.06 60);">/</span><span>ECS Fargate</span><span style="color: oklch(0.78 0.06 60);">/</span><span>GitHub Actions</span><span style="color: oklch(0.78 0.06 60);">/</span><span>ArgoCD</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Django</span><span style="color: oklch(0.78 0.06 60);">/</span><span>FastAPI</span><span style="color: oklch(0.78 0.06 60);">/</span><span>LangGraph</span><span style="color: oklch(0.78 0.06 60);">/</span><span>Bedrock</span><span style="color: oklch(0.78 0.06 60);">/</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="career" style="padding: 88px 0 24px;">
+      <div data-reveal="" data-section="career" style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.6 0.16 44); letter-spacing: 0.08em;">02</span>
+        <h2 data-mask="" style="margin: 0; font-size: 40px; letter-spacing: -0.035em; font-weight: 800; padding-bottom: 4px;"><span>Career</span></h2>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <div data-reveal="" style="display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid oklch(0.92 0.008 80);">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.6 0.16 44);">Sep 2024 — Present</div>
+            <div style="font-weight: 800; font-size: 18px; margin-top: 10px; letter-spacing: -0.02em;">NovaDSA</div>
+            <div style="font-size: 14px; color: oklch(0.5 0.01 60); margin-top: 2px;">Cloud Engineer</div>
+          </div>
+          <div>
+            <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.65; color: oklch(0.4 0.012 60);">
+              <li>Built and deployed production backend services on AWS (EKS, ECS Fargate, RDS) for enterprise client projects — AI chatbot platforms and data warehousing solutions.</li>
+              <li>Designed and maintained CI/CD pipelines with GitHub Actions, GitLab CI and ArgoCD: automated Docker builds, ECR pushes and rolling Kubernetes deployments.</li>
+              <li>Developed services in Python (Django, FastAPI) integrated with PostgreSQL and LLM agents via AWS Bedrock and LangGraph.</li>
+            </ul>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">AWS EKS</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">ECS Fargate</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">ArgoCD</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">Bedrock</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="" style="display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid oklch(0.92 0.008 80); border-bottom: 1px solid oklch(0.92 0.008 80);">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.62 0.01 60);">May 2024 — Sep 2024</div>
+            <div style="font-weight: 800; font-size: 18px; margin-top: 10px; letter-spacing: -0.02em;">Hannover Fairs Turkey</div>
+            <div style="font-size: 14px; color: oklch(0.5 0.01 60); margin-top: 2px;">IT Trainee</div>
+          </div>
+          <div>
+            <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.65; color: oklch(0.4 0.012 60);">
+              <li>Supported production IT operations: Windows Server, Active Directory and networking fundamentals across the local office.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" style="padding: 88px 0 24px;">
+      <div data-reveal="" data-section="projects" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 44px;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.6 0.16 44); letter-spacing: 0.08em;">03</span>
+          <h2 data-mask="" style="margin: 0; font-size: 40px; letter-spacing: -0.035em; font-weight: 800; padding-bottom: 4px;"><span>Projects</span></h2>
+        </div>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.55 0.01 60);">click a card for the full case study</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <article data-card="" onClick="{{ openQuitqos }}" style="position: relative; overflow: hidden; cursor: pointer; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); padding: 34px 36px; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;" style-hover="transform: translateY(-4px); box-shadow: 0 24px 50px -34px oklch(0.24 0.012 60 / 0.4); border-color: oklch(0.82 0.04 60);">
+          <div data-glow="" style="position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s ease;"></div>
+          <div data-reveal="" style="display: grid; grid-template-columns: 1fr 1fr; gap: 44px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.6 0.16 44);">
+                <span style="width: 6px; height: 6px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+                Java · Spring Boot
+              </div>
+              <h3 style="margin: 16px 0 8px; font-size: 30px; letter-spacing: -0.03em; font-weight: 800;">QuitQOS</h3>
+              <div style="font-size: 15px; color: oklch(0.5 0.01 60);">Habit-tracking mobile app · personal · in development</div>
+              <p style="margin: 18px 0 0; font-size: 16px; line-height: 1.65; color: oklch(0.4 0.012 60); text-wrap: pretty;">
+                A mobile app that helps people quit IQOS and track their recovery — real-time quit timer and science-based health milestones. Full backend built end to end in Java and Spring Boot.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">Spring Security</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">Flyway</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">JUnit · Mockito</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 10px; border-radius: 6px; background: oklch(0.96 0.006 85); color: oklch(0.45 0.01 60);">React Native</span>
+              </div>
+              <div style="margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500; color: oklch(0.55 0.14 44);">View case study&nbsp;→</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px; border-left: 1px solid oklch(0.93 0.008 80); padding-left: 40px;">
+              <div style="display: flex; gap: 14px;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.72 0.02 80); padding-top: 3px;">→</span><span style="font-size: 15.5px; line-height: 1.6; color: oklch(0.36 0.012 60);">Stateless JWT auth on top of Firebase Auth, using a custom Spring Security filter chain with rotating refresh tokens.</span></div>
+              <div style="display: flex; gap: 14px;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.72 0.02 80); padding-top: 3px;">→</span><span style="font-size: 15.5px; line-height: 1.6; color: oklch(0.36 0.012 60);">Schema evolution across 6 Flyway migrations with a scheduled job firing FCM milestone notifications.</span></div>
+              <div style="display: flex; gap: 14px;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.72 0.02 80); padding-top: 3px;">→</span><span style="font-size: 15.5px; line-height: 1.6; color: oklch(0.36 0.012 60);">39 unit tests across 7 services covering service-layer business logic.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <article data-card="" onClick="{{ openPaceup }}" style="position: relative; overflow: hidden; cursor: pointer; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); padding: 30px 32px; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;" style-hover="transform: translateY(-4px); box-shadow: 0 24px 50px -34px oklch(0.24 0.012 60 / 0.4); border-color: oklch(0.82 0.04 60);">
+            <div data-glow="" style="position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s ease;"></div>
+            <div data-reveal="">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Django · FastAPI · AWS</div>
+              <h3 style="margin: 14px 0 8px; font-size: 26px; letter-spacing: -0.03em; font-weight: 800;">PaceUp</h3>
+              <div style="font-size: 14.5px; color: oklch(0.5 0.01 60);">AI-powered running coach (iOS) · personal</div>
+              <ul style="margin: 20px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 11px; font-size: 15.5px; line-height: 1.6; color: oklch(0.4 0.012 60);">
+                <li>Event-driven Django backend, 6 apps and 18+ REST endpoints — one workout save triggers stats, achievements and notifications via signals.</li>
+                <li>RevenueCat subscriptions with race-safe purchase verification across concurrent webhook and client events.</li>
+                <li>3-service architecture on ECS Fargate; commit-to-prod in 5–10 min.</li>
+              </ul>
+              <div style="margin-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500; color: oklch(0.55 0.14 44);">View case study&nbsp;→</div>
+            </div>
+          </article>
+
+          <article data-card="" onClick="{{ openMatli }}" style="position: relative; overflow: hidden; cursor: pointer; border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); padding: 30px 32px; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;" style-hover="transform: translateY(-4px); box-shadow: 0 24px 50px -34px oklch(0.24 0.012 60 / 0.4); border-color: oklch(0.82 0.04 60);">
+            <div data-glow="" style="position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s ease;"></div>
+            <div data-reveal="">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Client work · NovaDSA</div>
+              <h3 style="margin: 14px 0 8px; font-size: 26px; letter-spacing: -0.03em; font-weight: 800;">Matlı</h3>
+              <div style="font-size: 14.5px; color: oklch(0.5 0.01 60);">AI conversational analytics platform</div>
+              <ul style="margin: 20px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 11px; font-size: 15.5px; line-height: 1.6; color: oklch(0.4 0.012 60);">
+                <li>Backend and chatbot service end to end: Django REST API, FastAPI + LangGraph AI service, Next.js frontend.</li>
+                <li>Conversation and message threading modeled in PostgreSQL, with multi-user history persisting across sessions.</li>
+                <li>Deployed to AWS EKS in a multi-environment (dev / prod) setup.</li>
+              </ul>
+              <div style="margin-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500; color: oklch(0.55 0.14 44);">View case study&nbsp;→</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" style="padding: 88px 0 40px;">
+      <div data-reveal="" data-section="education" style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.6 0.16 44); letter-spacing: 0.08em;">04</span>
+        <h2 data-mask="" style="margin: 0; font-size: 40px; letter-spacing: -0.035em; font-weight: 800; padding-bottom: 4px;"><span>Education &amp; Certificates</span></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div data-reveal="" style="border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); padding: 32px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Education</div>
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid oklch(0.93 0.008 80);">
+            <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Turkish-German University</div>
+            <div style="font-size: 15.5px; color: oklch(0.42 0.012 60); margin-top: 6px;">B.Sc. Mechatronic Systems Engineering</div>
+            <div style="display: flex; gap: 18px; margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.55 0.01 60);">
+              <span>2019 — 2024</span>
+              <span>GPA 3.30 / 4.00</span>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="" style="border: 1px solid oklch(0.9 0.008 80); border-radius: 16px; background: oklch(1 0 0); padding: 32px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Certifications</div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid oklch(0.93 0.008 80); display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+              <div>
+                <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.015em;">AWS Certified Solutions Architect</div>
+                <div style="font-size: 14px; color: oklch(0.5 0.01 60); margin-top: 3px;">Professional</div>
+              </div>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 10px; border-radius: 999px; border: 1px solid oklch(0.86 0.04 60); color: oklch(0.55 0.14 44);">verified</span>
+            </div>
+            <div style="margin-top: 18px; padding-top: 18px; border-top: 1px solid oklch(0.93 0.008 80); display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+              <div>
+                <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.015em;">AWS Certified Developer</div>
+                <div style="font-size: 14px; color: oklch(0.5 0.01 60); margin-top: 3px;">Associate</div>
+              </div>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 10px; border-radius: 999px; border: 1px solid oklch(0.86 0.04 60); color: oklch(0.55 0.14 44);">verified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal="" style="margin: 40px 0 0; border-radius: 20px; background: oklch(0.24 0.012 60); color: oklch(0.985 0.004 90); padding: 72px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      <div>
+        <h2 style="margin: 0 0 12px; font-size: 44px; letter-spacing: -0.04em; font-weight: 800;">Let&rsquo;s build a backend.</h2>
+        <p style="margin: 0; font-size: 17px; color: oklch(0.78 0.01 80); max-width: 46ch; line-height: 1.6;">Open to Java / Spring Boot and platform roles. Fastest way to reach me is email.</p>
+      </div>
+      <a href="mailto:berkan.trkgl35@gmail.com" style="padding: 16px 30px; border-radius: 12px; background: oklch(0.6 0.16 44); color: oklch(0.99 0.004 90); font-weight: 700; font-size: 16px; white-space: nowrap;" style-hover="background: oklch(0.985 0.004 90); color: oklch(0.24 0.012 60);">berkan.trkgl35@gmail.com</a>
+    </section>
+
+    <footer style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 40px 0 56px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.55 0.01 60); flex-wrap: wrap;">
+      <span>© 2026 Berkan Türkoğlu</span>
+      <span style="display: flex; gap: 20px;">
+        <a href="https://github.com/Berkantrkgl" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/berkanturkoglu/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:berkan.trkgl35@gmail.com">Email</a>
+      </span>
+    </footer>
+  </main>
+
+  <sc-if value="{{ detailOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 90; background: oklch(0.24 0.012 60 / 0.32); backdrop-filter: blur(3px); overflow-y: auto; animation: fadeIn .25s both;" onClick="{{ closeDetail }}">
+      <div onClick="{{ stopProp }}" style="max-width: 1000px; margin: 40px auto 64px; background: oklch(0.985 0.004 90); border: 1px solid oklch(0.9 0.008 80); border-radius: 20px; overflow: hidden; box-shadow: 0 40px 100px -40px oklch(0.24 0.012 60 / 0.5); animation: sheetIn .45s cubic-bezier(.2,.8,.2,1) both;">
+
+        <div style="position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 28px; background: oklch(0.985 0.004 90 / 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid oklch(0.92 0.008 80);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.55 0.01 60);">case study</span>
+          <button onClick="{{ closeDetail }}" style="border: 1px solid oklch(0.88 0.008 80); background: oklch(1 0 0); border-radius: 999px; padding: 8px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.35 0.012 60); cursor: pointer;" style-hover="border-color: oklch(0.6 0.16 44); color: oklch(0.6 0.16 44);">close · esc</button>
+        </div>
+
+        <sc-if value="{{ isQuitqos }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="padding: 44px 56px 36px;">
+              <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.6 0.16 44);">
+                <span style="width: 6px; height: 6px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+                Java · Spring Boot · personal project · Jun 2026 — present
+              </div>
+              <h2 style="margin: 18px 0 0; font-size: 54px; letter-spacing: -0.045em; font-weight: 800; line-height: 1;">QuitQOS</h2>
+              <p style="margin: 20px 0 0; max-width: 62ch; font-size: 19px; line-height: 1.6; color: oklch(0.36 0.012 60); text-wrap: pretty;">
+                A mobile app that helps people quit IQOS and track their recovery journey — a real-time quit timer, science-based health milestones and streak achievements. I designed and built the entire backend in Java and Spring Boot.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 26px;">
+                <a href="https://github.com/Berkantrkgl/quitqos" target="_blank" rel="noreferrer" style="padding: 11px 20px; border-radius: 9px; background: oklch(0.24 0.012 60); color: oklch(0.985 0.004 90); font-weight: 700; font-size: 14px;" style-hover="background: oklch(0.6 0.16 44);">Repository</a>
+                <span style="padding: 11px 20px; border-radius: 9px; border: 1px solid oklch(0.88 0.008 80); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.5 0.01 60);">status: in development</span>
+              </div>
+            </div>
+
+            <div style="position: relative; height: 400px; border-top: 1px solid oklch(0.92 0.008 80); border-bottom: 1px solid oklch(0.92 0.008 80); background: oklch(0.96 0.006 85);">
+              <image-slot id="quitqos-hero" shape="rect" placeholder="app hero shot or demo video frame · 16:6"></image-slot>
+            </div>
+
+            <div style="padding: 44px 56px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px;">
+              <div>
+                <h3 style="margin: 0 0 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">The problem</h3>
+                <p style="margin: 0 0 32px; font-size: 16.5px; line-height: 1.7; color: oklch(0.38 0.012 60); text-wrap: pretty;">
+                  Quitting is a long game, and motivation decays fast. The app needed to keep a precise, tamper-resistant quit timer, recognise health milestones at the right moment, and reach the user with a push notification even when the app was closed for days.
+                </p>
+                <h3 style="margin: 0 0 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">What I built</h3>
+                <div style="display: flex; flex-direction: column; gap: 18px;">
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Domain-first REST API</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">Domain modeling, REST API design and schema evolution across 6 Flyway migrations — every change versioned and repeatable across environments.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Stateless JWT authentication</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">A custom Spring Security filter chain on top of Firebase Auth, issuing short-lived access tokens with rotating refresh tokens — no server-side session state.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Scheduled milestone engine</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">A <code style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">@Scheduled</code> background job detects milestone completions and triggers FCM push notifications, decoupled from any user request.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Tested service layer</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">39 unit tests with JUnit and Mockito covering business logic across 7 services, so refactors stay cheap.</p>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.6 0.16 44);">Tech stack</div>
+                  <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
+                    <div>
+                      <div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Backend</div>
+                      <div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">Java 21 · Spring Boot · Spring JPA · Spring Security · Maven</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Data</div>
+                      <div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">PostgreSQL · Flyway</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Auth &amp; push</div>
+                      <div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">Firebase Auth · JWT · FCM</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Testing</div>
+                      <div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">JUnit · Mockito</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Client</div>
+                      <div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">React Native</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">By the numbers</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">7</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">services</div></div>
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">39</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">unit tests</div></div>
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">6</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">migrations</div></div>
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">JWT</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">stateless auth</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 0 56px 44px;">
+              <h3 style="margin: 0 0 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Architecture</h3>
+              <div style="position: relative; height: 340px; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                <image-slot id="quitqos-diagram" shape="rect" placeholder="architecture diagram · Spring Boot → PostgreSQL → FCM"></image-slot>
+              </div>
+              <h3 style="margin: 36px 0 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Screens</h3>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div style="position: relative; aspect-ratio: 9 / 16; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="quitqos-s1" shape="rect" placeholder="quit timer screen"></image-slot>
+                </div>
+                <div style="position: relative; aspect-ratio: 9 / 16; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="quitqos-s2" shape="rect" placeholder="milestones screen"></image-slot>
+                </div>
+                <div style="position: relative; aspect-ratio: 9 / 16; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="quitqos-s3" shape="rect" placeholder="achievements screen"></image-slot>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPaceup }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="padding: 44px 56px 36px;">
+              <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.6 0.16 44);">
+                <span style="width: 6px; height: 6px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+                Django · FastAPI · AWS · personal project · Jan 2026 — present
+              </div>
+              <h2 style="margin: 18px 0 0; font-size: 54px; letter-spacing: -0.045em; font-weight: 800; line-height: 1;">PaceUp</h2>
+              <p style="margin: 20px 0 0; max-width: 62ch; font-size: 19px; line-height: 1.6; color: oklch(0.36 0.012 60); text-wrap: pretty;">
+                An AI-powered running coach for iOS. A chatbot builds personalised training plans (Easy / Long / Tempo / Interval) that land on an in-app calendar, with stats chat and pre-workout reminders.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 26px;">
+                <a href="https://github.com/Berkantrkgl/paceup" target="_blank" rel="noreferrer" style="padding: 11px 20px; border-radius: 9px; background: oklch(0.24 0.012 60); color: oklch(0.985 0.004 90); font-weight: 700; font-size: 14px;" style-hover="background: oklch(0.6 0.16 44);">Repository</a>
+                <span style="padding: 11px 20px; border-radius: 9px; border: 1px solid oklch(0.88 0.008 80); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.5 0.01 60);">status: live on AWS</span>
+              </div>
+            </div>
+
+            <div style="position: relative; height: 400px; border-top: 1px solid oklch(0.92 0.008 80); border-bottom: 1px solid oklch(0.92 0.008 80); background: oklch(0.96 0.006 85);">
+              <image-slot id="paceup-hero" shape="rect" placeholder="app hero shot or demo video frame · 16:6"></image-slot>
+            </div>
+
+            <div style="padding: 44px 56px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px;">
+              <div>
+                <h3 style="margin: 0 0 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">The problem</h3>
+                <p style="margin: 0 0 32px; font-size: 16.5px; line-height: 1.7; color: oklch(0.38 0.012 60); text-wrap: pretty;">
+                  A single workout save has to fan out into stats, achievements, notifications and plan adjustments — without turning the request into a slow, brittle monolith of side effects. Payments had to survive webhooks and clients racing each other.
+                </p>
+                <h3 style="margin: 0 0 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">What I built</h3>
+                <div style="display: flex; flex-direction: column; gap: 18px;">
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Event-driven Django backend</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">6 apps and 18+ REST endpoints; Django signals let one workout save trigger stats, achievements and notifications independently.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Race-safe subscriptions</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">RevenueCat integration with idempotent purchase verification across concurrent webhook and client events.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">3-service AWS architecture</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">Django + FastAPI + React Native on ECS Fargate sharing one RDS PostgreSQL instance, behind a shared ALB with host-based routing, ACM wildcard cert and Route 53 aliases for 3 subdomains.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">5–10 minute deploys</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">GitHub Actions pipeline: build, ECR push, ECS rolling deployment — commit to production without manual steps.</p>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.6 0.16 44);">Tech stack</div>
+                  <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Backend</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">Python · Django · DRF · FastAPI</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">AI</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">LangGraph · AWS Bedrock</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Data</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">RDS PostgreSQL</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Infra</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">ECS Fargate · ALB · Route 53 · ACM · ECR</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Client</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">React Native · RevenueCat</div></div>
+                  </div>
+                </div>
+                <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">By the numbers</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">18+</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">endpoints</div></div>
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">6</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">Django apps</div></div>
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">3</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">services / subdomains</div></div>
+                    <div><div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em;">5–10m</div><div style="font-size: 12px; color: oklch(0.55 0.01 60);">commit → prod</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 0 56px 44px;">
+              <h3 style="margin: 0 0 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Architecture</h3>
+              <div style="position: relative; height: 340px; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                <image-slot id="paceup-diagram" shape="rect" placeholder="AWS architecture diagram · ALB → 3× ECS Fargate → RDS"></image-slot>
+              </div>
+              <h3 style="margin: 36px 0 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Screens</h3>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div style="position: relative; aspect-ratio: 9 / 16; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="paceup-s1" shape="rect" placeholder="chat / plan generation"></image-slot>
+                </div>
+                <div style="position: relative; aspect-ratio: 9 / 16; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="paceup-s2" shape="rect" placeholder="training calendar"></image-slot>
+                </div>
+                <div style="position: relative; aspect-ratio: 9 / 16; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="paceup-s3" shape="rect" placeholder="workout stats"></image-slot>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMatli }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="padding: 44px 56px 36px;">
+              <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.6 0.16 44);">
+                <span style="width: 6px; height: 6px; border-radius: 999px; background: oklch(0.6 0.16 44);"></span>
+                Client project · NovaDSA · Dec 2025 — present
+              </div>
+              <h2 style="margin: 18px 0 0; font-size: 54px; letter-spacing: -0.045em; font-weight: 800; line-height: 1;">Matlı</h2>
+              <p style="margin: 20px 0 0; max-width: 62ch; font-size: 19px; line-height: 1.6; color: oklch(0.36 0.012 60); text-wrap: pretty;">
+                An enterprise conversational analytics platform: business users ask questions in natural language and get answers from their own data. I built the backend and chatbot service end to end, plus the Next.js frontend.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 26px;">
+                <span style="padding: 11px 20px; border-radius: 9px; border: 1px solid oklch(0.88 0.008 80); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: oklch(0.5 0.01 60);">private client work · no public repo</span>
+              </div>
+            </div>
+
+            <div style="position: relative; height: 400px; border-top: 1px solid oklch(0.92 0.008 80); border-bottom: 1px solid oklch(0.92 0.008 80); background: oklch(0.96 0.006 85);">
+              <image-slot id="matli-hero" shape="rect" placeholder="dashboard / chat UI screenshot · 16:6"></image-slot>
+            </div>
+
+            <div style="padding: 44px 56px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px;">
+              <div>
+                <h3 style="margin: 0 0 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">The problem</h3>
+                <p style="margin: 0 0 32px; font-size: 16.5px; line-height: 1.7; color: oklch(0.38 0.012 60); text-wrap: pretty;">
+                  An LLM answer is only useful if the conversation around it is durable: multiple users, long threads, and state that survives a reload or a redeploy. The platform also had to run in dev and prod on shared enterprise infrastructure.
+                </p>
+                <h3 style="margin: 0 0 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">What I built</h3>
+                <div style="display: flex; flex-direction: column; gap: 18px;">
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Django REST API + FastAPI AI service</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">A clean split: Django owns domain and auth, a FastAPI + LangGraph service owns agent orchestration against AWS Bedrock.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Conversation &amp; threading model</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">Conversations and messages modeled in PostgreSQL to support multi-user chat history with persistent state across sessions.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Multi-environment EKS deployment</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">Docker images and Kubernetes manifests for all services on an existing EKS cluster, dev and prod side by side under shared networking and routing.</p>
+                  </div>
+                  <div style="border-left: 2px solid oklch(0.86 0.04 60); padding-left: 18px;">
+                    <div style="font-weight: 700; font-size: 16.5px;">Next.js frontend</div>
+                    <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.65; color: oklch(0.42 0.012 60);">Streaming chat interface wired to the API, with conversation history and session restore.</p>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.6 0.16 44);">Tech stack</div>
+                  <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Backend</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">Django · DRF · FastAPI</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">AI</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">LangGraph · AWS Bedrock · RAG · OpenSearch</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Data</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">PostgreSQL</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Infra</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">AWS EKS · Docker · Helm · GitLab CI</div></div>
+                    <div><div style="font-size: 11.5px; color: oklch(0.58 0.01 60); font-family: 'JetBrains Mono', monospace;">Frontend</div><div style="font-size: 14.5px; margin-top: 4px; line-height: 1.5;">Next.js · TypeScript</div></div>
+                  </div>
+                </div>
+                <div style="border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; background: oklch(1 0 0); padding: 22px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Role</div>
+                  <div style="font-size: 15px; line-height: 1.6; color: oklch(0.38 0.012 60); margin-top: 12px;">Sole backend engineer — data model, REST API, AI service and deployment.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 0 56px 44px;">
+              <h3 style="margin: 0 0 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Architecture</h3>
+              <div style="position: relative; height: 340px; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                <image-slot id="matli-diagram" shape="rect" placeholder="architecture diagram · EKS · Django / FastAPI / Next.js"></image-slot>
+              </div>
+              <h3 style="margin: 36px 0 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.01 60);">Interface</h3>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div style="position: relative; aspect-ratio: 16 / 10; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="matli-s1" shape="rect" placeholder="chat with data"></image-slot>
+                </div>
+                <div style="position: relative; aspect-ratio: 16 / 10; border: 1px solid oklch(0.9 0.008 80); border-radius: 14px; overflow: hidden; background: oklch(0.96 0.006 85);">
+                  <image-slot id="matli-s2" shape="rect" placeholder="conversation history"></image-slot>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showAvailabilityBadge&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showLanguages&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;animateOnScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { detail: null };
+
+  open(key) {
+    return (e) => {
+      if (e && e.target && e.target.closest && e.target.closest('a')) return;
+      this.setState({ detail: key });
+    };
+  }
+
+  renderVals() {
+    const d = this.state.detail;
+    return {
+      showAvailabilityBadge: this.props.showAvailabilityBadge ?? true,
+      showLanguages: this.props.showLanguages ?? true,
+      detailOpen: !!d,
+      isQuitqos: d === 'quitqos',
+      isPaceup: d === 'paceup',
+      isMatli: d === 'matli',
+      openQuitqos: this.open('quitqos'),
+      openPaceup: this.open('paceup'),
+      openMatli: this.open('matli'),
+      closeDetail: () => this.setState({ detail: null }),
+      stopProp: (e) => e.stopPropagation()
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.detail !== this.state.detail) {
+      document.body.style.overflow = this.state.detail ? 'hidden' : '';
+      if (this.state.detail) window.scrollTo({ top: window.scrollY });
+    }
+  }
+
+  componentDidMount() {
+    this._onKey = (e) => { if (e.key === 'Escape' && this.state.detail) this.setState({ detail: null }); };
+    window.addEventListener('keydown', this._onKey);
+
+    const animate = (this.props.animateOnScroll ?? true) &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const count = (el) => {
+      const to = parseFloat(el.getAttribute('data-count-to'));
+      if (isNaN(to)) return;
+      const dec = parseInt(el.getAttribute('data-count-dec') || '0', 10);
+      const suffix = el.getAttribute('data-count-suffix') || '';
+      if (!animate) { el.textContent = to.toFixed(dec) + suffix; return; }
+      const t0 = performance.now(), dur = 1100;
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = (to * e).toFixed(dec) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const els = Array.from(document.querySelectorAll('[data-reveal], [data-mask]'));
+    // stagger siblings within each section
+    Array.from(document.querySelectorAll('section, main > div')).forEach(sec => {
+      Array.from(sec.querySelectorAll('[data-reveal], [data-mask]')).forEach((el, i) => {
+        const d = Math.min(i, 5) * 80;
+        if (el.hasAttribute('data-mask')) {
+          const inner = el.firstElementChild;
+          if (inner) inner.style.transitionDelay = d + 'ms';
+        } else {
+          el.style.transitionDelay = d + 'ms';
+        }
+      });
+    });
+
+    if (!animate || !('IntersectionObserver' in window)) {
+      els.forEach(el => { el.classList.add('in'); count(el); });
+    } else {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          if (e.target.hasAttribute('data-count-to')) count(e.target);
+          this._io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      els.forEach(el => this._io.observe(el));
+      this._fallback = setTimeout(() => els.forEach(el => el.classList.add('in')), 4000);
+    }
+
+    // pointer-tracked light on project cards
+    this._cards = Array.from(document.querySelectorAll('[data-card]'));
+    this._cards.forEach(card => {
+      const glow = card.querySelector('[data-glow]');
+      if (!glow) return;
+      card.addEventListener('pointermove', (ev) => {
+        const r = card.getBoundingClientRect();
+        glow.style.background = 'radial-gradient(520px circle at ' + (ev.clientX - r.left) + 'px ' +
+          (ev.clientY - r.top) + 'px, oklch(0.6 0.16 44 / 0.07), transparent 62%)';
+        glow.style.opacity = '1';
+      });
+      card.addEventListener('pointerleave', () => { glow.style.opacity = '0'; });
+    });
+
+    // scroll-linked parallax
+    const par = Array.from(document.querySelectorAll('[data-parallax]'));
+    const headbar = document.querySelector('[data-headbar]');
+    const header = headbar ? headbar.parentElement : null;
+    this._raf = null;
+    this._frame = () => {
+      this._raf = null;
+      const vh = window.innerHeight;
+      if (animate) {
+        par.forEach(el => {
+          const sp = parseFloat(el.getAttribute('data-parallax')) || 0;
+          const r = el.getBoundingClientRect();
+          const off = (r.top + r.height / 2 - vh / 2) * -sp;
+          el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
+        });
+      }
+      const shrunk = window.scrollY > 60;
+      if (headbar && this._shrunk !== shrunk) {
+        this._shrunk = shrunk;
+        headbar.style.height = shrunk ? '56px' : '68px';
+        if (header) header.style.boxShadow = shrunk ? '0 10px 30px -26px oklch(0.24 0.012 60 / 0.6)' : 'none';
+      }
+    };
+    this._queue = () => { if (this._raf == null) this._raf = requestAnimationFrame(this._frame); };
+    window.addEventListener('scroll', this._queue, { passive: true });
+    window.addEventListener('resize', this._queue);
+    this._queue();
+
+    const bar = document.querySelector('[data-progress]');
+    const navs = Array.from(document.querySelectorAll('[data-nav]'));
+    const sections = ['about', 'career', 'projects', 'education'].map(id => document.getElementById(id));
+    const setActive = (id) => {
+      navs.forEach(a => {
+        const on = a.getAttribute('data-nav') === id;
+        a.style.color = on ? 'oklch(0.24 0.012 60)' : 'oklch(0.45 0.01 60)';
+        a.style.background = on ? 'oklch(0.94 0.008 80)' : 'transparent';
+      });
+    };
+    this._onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      let current = null;
+      sections.forEach(s => { if (s && s.getBoundingClientRect().top <= 140) current = s.id; });
+      if (current !== this._active) { this._active = current; setActive(current); }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._fallback) clearTimeout(this._fallback);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('scroll', this._queue);
+    window.removeEventListener('resize', this._queue);
+    if (this._raf != null) cancelAnimationFrame(this._raf);
+    window.removeEventListener('keydown', this._onKey);
+    document.body.style.overflow = '';
+  }
+}
+</script>
+</body>
+</html>

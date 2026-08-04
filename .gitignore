@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent / editor scratch
+.claude/
+CLAUDE.md
+
+# aws
+.aws-sam/
+aws-exports.js
