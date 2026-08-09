@@ -5,12 +5,13 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
 import { CountUp } from "@/components/motion/count-up";
-import { copy } from "@/content/copy";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 import { site } from "@/content/site";
 import { renderEmphasis } from "@/lib/emphasis";
 
-export function Intro() {
-  const { intro } = copy;
+export function Intro({ locale }: { locale: Locale }) {
+  const { intro } = getContent(locale).copy;
   const portraitRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 

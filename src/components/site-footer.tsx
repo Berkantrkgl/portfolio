@@ -1,7 +1,10 @@
-import { copy } from "@/content/copy";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 import { site } from "@/content/site";
 
-export function SiteFooter() {
+export function SiteFooter({ locale }: { locale: Locale }) {
+  const { copy } = getContent(locale);
+
   return (
     <footer className="flex flex-wrap items-center justify-between gap-6 pt-10 pb-14 font-mono text-xs text-ink-meta">
       <span>{copy.footer.rights}</span>

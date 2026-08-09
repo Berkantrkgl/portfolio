@@ -21,7 +21,7 @@ export const copy = {
   meta: {
     title: "Berkan Türkoğlu — Backend & Cloud Engineer",
     description:
-      "Backend engineer focused on Java and Spring Boot. AWS certified, building and running production systems.",
+      "Backend & Cloud Engineer in Istanbul. Focused on Java and Spring Boot, AWS certified. I run the production systems I build.",
   },
 
   nav: {
@@ -35,11 +35,10 @@ export const copy = {
 
   intro: {
     /** Three lines; the middle one is accent-coloured. */
-    headline: ["Hi, I'm Berkan —", "backend engineer", "who runs it in production."],
+    headline: ["Hi, I'm Berkan —", "Backend & Cloud Engineer", "based in Istanbul."],
     paragraphs: [
-      "I'm a Backend & Cloud Engineer in Istanbul. For the past 1.5 years at NovaDSA I've been building and running production systems on AWS — REST APIs, containerized services on ECS and EKS, and AI-driven features powered by LangGraph and AWS Bedrock for enterprise clients.",
-      "My focus now is **Java and Spring Boot** — the stack I'm building my next chapter around. I like systems where the data model does the heavy lifting: clear domains, honest transactions, migrations you can trust, and tests that describe the business instead of the framework.",
-      "I studied Mechatronic Systems Engineering, which is probably why I care more about how a system behaves under load than how it looks on a whiteboard. I work in Turkish, English and German.",
+      "For the past 1.5 years I've been a Cloud Engineer at Novadsa, a cloud consultancy in Istanbul. We cover a fairly wide range for our clients: data lake and data warehouse solutions, infrastructure modernisation, and chatbot products. We containerise what we build and put it into production on AWS, on ECS or EKS. Most of our work is Python — Django for the backend, FastAPI where the service is data- or AI-heavy. I build the LLM agents with AWS Bedrock and LangGraph, and I'm the one who takes a system live and looks after it afterwards.",
+      "Where I'm heading is **Java and Spring Boot**. I'm actively learning it and already using it in my own projects — the QuitQOS backend is entirely Spring Boot: domain modelling, REST API design, authentication with Spring Security, and tests that actually cover the business logic. On the Python side I have solid experience from enterprise client work.",
     ],
     stats: [
       { value: 1.5, decimals: 1, suffix: "+", caption: "Years in production" },
@@ -47,10 +46,10 @@ export const copy = {
     ],
     currentlyLabel: "Currently",
     currently: [
-      "Just launched **QuitQOS** and **PaceUp** — two iOS apps, both live, backend to app store.",
-      "Going deep on **Java & Spring Boot** as my target backend stack.",
-      "Starting a **veterinary booking platform** — two-sided, for clinics and pet owners.",
-      "Deepening **Kubernetes / EKS** and Infrastructure-as-Code.",
+      "Launched **QuitQOS** and **PaceUp** — two iOS apps, both mine from the backend to the App Store.",
+      "Going deep on **Java & Spring Boot**; that's the stack I'm aiming for.",
+      "Started building my new project, a **veterinary booking platform** — two-sided, for clinics and pet owners.",
+      "Building up my **Kubernetes / EKS** and Infrastructure-as-Code side.",
     ],
     actions: {
       email: "Email me",
@@ -66,8 +65,8 @@ export const copy = {
     heading: "Tech I work with",
     groups: [
       {
-        category: "Primary — Java",
-        blurb: "The stack I build on and go deepest in.",
+        category: "Focus — Java",
+        blurb: "What I write my own projects in, and where I go deepest.",
         /** The one group rendered in accent; everything else is neutral. */
         primary: true,
         items: [
@@ -75,6 +74,7 @@ export const copy = {
           "Spring Boot",
           "Spring Data JPA",
           "Spring Security",
+          "Flyway",
           "Maven",
           "JUnit · Mockito",
           "REST design",
@@ -83,12 +83,12 @@ export const copy = {
       },
       {
         category: "Also backend",
-        blurb: "What I use day to day at work.",
-        items: ["Python", "Django · DRF", "FastAPI", "PostgreSQL", "Flyway", "Redis"],
+        blurb: "The tools I use day to day at work.",
+        items: ["Python", "Django · DRF", "FastAPI", "PostgreSQL", "Redis"],
       },
       {
         category: "Cloud & DevOps",
-        blurb: "How it reaches production, and stays there.",
+        blurb: "The side that carries my code to production and keeps it there.",
         items: [
           "AWS",
           "ECS Fargate",
@@ -101,11 +101,10 @@ export const copy = {
       },
       {
         category: "Data & AI",
-        blurb: "LLM services and pipelines for client work.",
+        blurb: "LLM services and data pipelines I've built on client projects.",
         items: ["AWS Bedrock", "LangGraph", "RAG", "OpenSearch", "Lambda · Kinesis", "Redshift"],
       },
     ] as TechGroup[],
-    pills: ["Turkish — native", "English — professional", "German — professional"],
   },
 
   career: {
@@ -117,18 +116,20 @@ export const copy = {
         company: "NovaDSA",
         role: "Cloud Engineer",
         bullets: [
-          "Built and deployed production backend services on AWS (EKS, ECS Fargate, RDS) for enterprise client projects — AI chatbot platforms and data warehousing solutions.",
-          "Designed and maintained CI/CD pipelines with GitHub Actions, GitLab CI and ArgoCD: automated Docker builds, ECR pushes and rolling Kubernetes deployments.",
-          "Developed services in Python (Django, FastAPI) integrated with PostgreSQL and LLM agents via AWS Bedrock and LangGraph.",
+          "Architected the CI/CD and GitOps foundation for a multi-chatbot platform on Amazon EKS: ArgoCD's App of Apps pattern, Karpenter for autoscaling, IRSA and External Secrets Operator.",
+          "Built the delivery pipeline behind it — GitLab CI → CodeBuild → ECR → ArgoCD Image Updater — so deployments to Kubernetes are declarative rather than manual.",
+          "Delivered an AI analytics chatbot for Matlı Yem, combining LangGraph and Bedrock agents with OpenSearch and Databricks underneath.",
+          "Built an AI chatbot for MEF University: LangGraph and FastAPI against Django/LTI, a Next.js front end, and OpenSearch hybrid search over Bedrock and Cohere embeddings.",
+          "Designed the AWS networking for multi-service deployments: a shared ALB with host-based routing, ACM certificates, autoscaling and cross-account IAM.",
         ],
-        tags: ["AWS EKS", "ECS Fargate", "ArgoCD", "Bedrock", "PostgreSQL"],
+        tags: ["AWS EKS", "ArgoCD", "Karpenter", "Bedrock", "LangGraph", "OpenSearch"],
       },
       {
         period: "May 2024 — Sep 2024",
         company: "Hannover Fairs Turkey",
         role: "IT Trainee",
         bullets: [
-          "Supported production IT operations: Windows Server, Active Directory and networking fundamentals across the local office.",
+          "Supported the office's IT operations: Windows Server, Active Directory and basic network administration.",
         ],
       },
     ] as Role[],
@@ -137,14 +138,38 @@ export const copy = {
   projects: {
     label: "03",
     heading: "Projects",
-    hint: "click a card for the full case study",
-    cta: "View case study",
+    hint: "click a card for the project details",
+    cta: "View the project",
     back: "Projects",
+  },
+
+  /** Labels on the case-study pages. */
+  caseStudy: {
+    problem: "The problem",
+    built: "Technical details",
+    stack: "Tech stack",
+    numbers: "By the numbers",
+    role: "Role",
+    architecture: "Architecture",
+    visit: "Open the site ↗",
+    repository: "Repository",
+    /**
+     * Captions on the four architecture figures. The SVGs themselves are
+     * language-independent — only these caption bars are translated.
+     */
+    diagrams: {
+      quitqosArchitecture: "QuitQOS — system architecture",
+      quitqosTokens: "The Firebase identity and my own token",
+      quitqosTokensSubtitle: "token issue & rotation",
+      paceupArchitecture: "PaceUp — three services, one monorepo",
+      paceupSignals: "One save, four independent effects",
+      paceupSignalsSubtitle: "Django signal chain",
+    },
   },
 
   education: {
     label: "04",
-    heading: "Education & Certificates",
+    heading: "Education & Certifications",
     educationLabel: "Education",
     school: "Turkish-German University",
     degree: "B.Sc. Mechatronic Systems Engineering",
@@ -156,11 +181,13 @@ export const copy = {
       { name: "AWS Certified Developer", level: "Associate" },
     ],
     verified: "verified",
+    languagesLabel: "Languages",
+    languages: ["Turkish — native", "English — professional", "German — professional"],
   },
 
   cta: {
     heading: "Get in touch.",
-    body: "If something here is worth a conversation — a project, a question, or just a hello — email is the fastest way to reach me.",
+    body: "If anything here caught your attention — a project, a question, or just a hello — email is the fastest way to reach me.",
   },
 
   footer: {

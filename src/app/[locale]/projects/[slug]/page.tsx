@@ -10,24 +10,31 @@ import { QuitqosArchitecture } from "@/components/diagrams/quitqos-architecture"
 import { QuitqosTokens } from "@/components/diagrams/quitqos-tokens";
 import { Reveal } from "@/components/motion/reveal";
 import { ScreenshotGallery } from "@/components/screenshot-gallery";
-import { copy } from "@/content/copy";
-import { getCaseStudy } from "@/content/case-studies";
-import { getProject, projectSlugs, type ProjectSlug } from "@/content/projects";
+import { getContent } from "@/content";
+import type { copy as copyEn } from "@/content/copy";
+import { isLocale, locales } from "@/content/locales";
+import { projectSlugs, type ProjectSlug } from "@/content/projects";
 
 export function generateStaticParams() {
-  return projectSlugs.map((slug) => ({ slug }));
+  return locales.flatMap((locale) => projectSlugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({
   params,
-}: PageProps<"/projects/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProject(slug);
+}: PageProps<"/[locale]/projects/[slug]">): Promise<Metadata> {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) return {};
+
+  const project = getContent(locale).getProject(slug);
   if (!project) return {};
 
   return {
     title: `${project.title} — Berkan Türkoğlu`,
     description: project.summary ?? project.meta,
+    alternates: {
+      canonical: `/${locale}/projects/${slug}/`,
+      languages: Object.fromEntries(locales.map((it) => [it, `/${it}/projects/${slug}/`])),
+    },
   };
 }
 
@@ -40,13 +47,20 @@ function SubHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Diagrams({ slug }: { slug: ProjectSlug }) {
+/** Subtitles that are pure tech lists stay as they are in every language. */
+function Diagrams({
+  slug,
+  labels,
+}: {
+  slug: ProjectSlug;
+  labels: (typeof copyEn)["caseStudy"]["diagrams"];
+}) {
   if (slug === "quitqos") {
     return (
       <>
         <Reveal>
           <DiagramFigure
-            title="QuitQOS — system architecture"
+            title={labels.quitqosArchitecture}
             subtitle="Java 21 · Spring Boot 4.1 · PostgreSQL · Firebase"
             minWidth={900}
           >
@@ -55,8 +69,8 @@ function Diagrams({ slug }: { slug: ProjectSlug }) {
         </Reveal>
         <Reveal>
           <DiagramFigure
-            title="Two identities, never mixed"
-            subtitle="token issue & rotation"
+            title={labels.quitqosTokens}
+            subtitle={labels.quitqosTokensSubtitle}
             minWidth={860}
           >
             <QuitqosTokens />
@@ -71,7 +85,7 @@ function Diagrams({ slug }: { slug: ProjectSlug }) {
       <>
         <Reveal>
           <DiagramFigure
-            title="PaceUp — three services, one monorepo"
+            title={labels.paceupArchitecture}
             subtitle="Django 6 · FastAPI · LangGraph · Hetzner"
             minWidth={980}
           >
@@ -80,8 +94,8 @@ function Diagrams({ slug }: { slug: ProjectSlug }) {
         </Reveal>
         <Reveal>
           <DiagramFigure
-            title="One save, four independent effects"
-            subtitle="Django signal chain"
+            title={labels.paceupSignals}
+            subtitle={labels.paceupSignalsSubtitle}
             minWidth={900}
           >
             <PaceupSignals />
@@ -94,13 +108,19 @@ function Diagrams({ slug }: { slug: ProjectSlug }) {
   return null;
 }
 
-export default async function ProjectPage({ params }: PageProps<"/projects/[slug]">) {
-  const { slug } = await params;
-  const project = getProject(slug);
+export default async function ProjectPage({ params }: PageProps<"/[locale]/projects/[slug]">) {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
+
+  const content = getContent(locale);
+  const project = content.getProject(slug);
   if (!project) notFound();
 
-  const study = getCaseStudy(project.slug);
+  const { copy } = content;
+  const labels = copy.caseStudy;
+  const study = content.getCaseStudy(project.slug);
   const hasDiagrams = project.slug !== "pegasos";
+  const backHref = `/${locale}/#projects`;
 
   return (
     <article className="py-12 lg:py-16">
@@ -109,7 +129,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       {/* Title block */}
       <header>
         <Link
-          href="/#projects"
+          href={backHref}
           className="font-mono text-[12.5px] text-ink-meta transition-colors hover:text-accent"
         >
           ← {copy.projects.back}
@@ -136,7 +156,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
               rel="noreferrer"
               className="rounded-[9px] bg-ink px-5 py-2.5 text-sm font-bold text-inverse transition-colors hover:bg-accent"
             >
-              Visit the site ↗
+              {labels.visit}
             </a>
           )}
           {project.links.repo && (
@@ -150,7 +170,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
                   : "bg-ink text-inverse hover:bg-accent"
               }`}
             >
-              Repository
+              {labels.repository}
             </a>
           )}
           <span className="rounded-[9px] border border-border-strong px-5 py-2.5 font-mono text-[12.5px] text-ink-3">
@@ -163,12 +183,12 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       <div className="mt-14 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
         <div className="flex flex-col gap-12">
           <Reveal>
-            <SubHeading>The problem</SubHeading>
+            <SubHeading>{labels.problem}</SubHeading>
             <p className="mt-3.5 mb-0 text-[16.5px] leading-[1.7] text-ink-body">{study.problem}</p>
           </Reveal>
 
           <Reveal>
-            <SubHeading>What I built</SubHeading>
+            <SubHeading>{labels.built}</SubHeading>
             <div className="mt-4 flex flex-col gap-5">
               {study.built.map((block) => (
                 <div key={block.title} className="border-l-2 border-accent-border pl-4.5">
@@ -186,7 +206,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         <Reveal className="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-2xl border border-border bg-surface p-5.5">
             <div className="font-mono text-[10.5px] tracking-[0.08em] text-accent uppercase">
-              Tech stack
+              {labels.stack}
             </div>
             <div className="mt-4 flex flex-col gap-3.5">
               {study.stack.map((row) => (
@@ -201,7 +221,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           {study.numbers && (
             <div className="rounded-2xl border border-border bg-surface p-5.5">
               <div className="font-mono text-[10.5px] tracking-[0.08em] text-ink-label uppercase">
-                By the numbers
+                {labels.numbers}
               </div>
               <div className="mt-4 grid grid-cols-2 gap-4">
                 {study.numbers.map((stat) => (
@@ -219,7 +239,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           {study.role && (
             <div className="rounded-2xl border border-border bg-surface p-5.5">
               <div className="font-mono text-[10.5px] tracking-[0.08em] text-ink-label uppercase">
-                Role
+                {labels.role}
               </div>
               <p className="mt-3 mb-0 text-[15px] leading-[1.6] text-ink-soft">{study.role}</p>
             </div>
@@ -231,10 +251,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       {hasDiagrams && (
         <section className="mt-16">
           <Reveal>
-            <SubHeading>Architecture</SubHeading>
+            <SubHeading>{labels.architecture}</SubHeading>
           </Reveal>
           <div className="mt-4 flex flex-col gap-6">
-            <Diagrams slug={project.slug} />
+            <Diagrams slug={project.slug} labels={labels.diagrams} />
           </div>
         </section>
       )}
@@ -257,7 +277,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       {/* Next / back */}
       <Reveal className="mt-16 border-t border-border-soft pt-8">
         <Link
-          href="/#projects"
+          href={backHref}
           className="font-mono text-[12.5px] text-accent-link transition-colors hover:text-accent-link-hover"
         >
           ← {copy.projects.back}

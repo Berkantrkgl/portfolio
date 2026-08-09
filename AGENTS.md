@@ -27,19 +27,18 @@ Next.js 16 (App Router) · React 19 · TypeScript · Tailwind 4 · Motion. Stati
 ```
 src/
 ├── app/
-│   ├── layout.tsx                — fonts, header, footer, progress bar, metadata
-│   ├── page.tsx                  — the home page, assembled from sections
-│   └── projects/[slug]/          — case-study pages
+│   ├── page.tsx                  — `/` → meta-refresh to the default locale
+│   └── [locale]/
+│       ├── layout.tsx            — the root layout: <html lang>, fonts, header, footer, metadata
+│       ├── page.tsx              — the home page, assembled from sections
+│       └── projects/[slug]/      — case-study pages
 ├── components/
 │   ├── diagrams/                 — ArrowDefs, DiagramFigure + one component per diagram
 │   ├── motion/                   — Reveal, MaskedHeading, CountUp
+│   ├── locale-switcher.tsx       — EN/TR toggle; swaps the segment, keeps the path
 │   ├── screenshot-gallery.tsx    — 9:16 phone frames or 16:10 wide frames
 │   └── sections/                 — Intro, Tech, Marquee, Career, Projects, Education, ContactCta
-├── content/
-│   ├── copy.ts                   — all site copy
-│   ├── projects.ts               — card-level project data
-│   ├── case-studies.ts           — case-study bodies: problem, blocks, stack, numbers, shots
-│   └── site.ts                   — links, email, marquee tokens
+├── content/                      — see "Language" below for the per-locale layout
 └── lib/
     └── emphasis.tsx              — renders **bold** inside copy strings
 ```
@@ -68,12 +67,43 @@ add the `src` in `content/case-studies.ts`.
 
 ## Language
 
-**English only.** The site was briefly bilingual (TR/EN with `/tr` and `/en` prefixes);
-Berkan dropped it on 2026-08-04 — the site replaces his CV in job applications, so one
-language is enough. Don't reintroduce i18n unless he asks.
+**Bilingual: English + Turkish.** English is the default — `/` forwards to `/en/`, since the
+site stands in for a CV in job applications. Turkish lives at `/tr/`. Switching the default
+is one line: `defaultLocale` in `content/locales.ts`. The order of `locales` there also
+drives the order of the header switcher.
 
-All copy lives in `content/copy.ts`. Never hardcode user-facing strings in components —
-add a key there instead.
+The Turkish copy is **not a translation of the English** — it was rewritten natively after
+the literal translation read badly. Treat each language as its own text: fixing a phrase in
+one does not mean porting the same sentence to the other. The English side is still the
+original wording and has not been reconciled with the Turkish rewrite.
+
+Every route is nested under `app/[locale]/`, which also holds the root layout — that is
+where `<html lang>` is set, so the locale is known before anything renders. The static
+export produces `/en/`, `/tr/` and both sets of case studies; `/` is a meta-refresh stub
+with no server behind it.
+
+```
+content/
+├── locales.ts          — the locale list, default, and `isLocale` guard
+├── index.ts            — `getContent(locale)` — the ONLY place a locale becomes content
+├── copy.ts             — English copy; the source of truth for shape
+├── copy.tr.ts          — typed `typeof copyEn`, so a missing key fails typecheck
+├── projects.ts / .tr.ts
+├── case-studies.ts / .tr.ts
+└── site.ts             — locale-independent: links, email, marquee tokens
+```
+
+Rules that keep this from rotting:
+
+- **Components never import `copy.ts` directly.** They take a `locale` prop and call
+  `getContent(locale)`. The one exception is `type`-only imports for prop typing.
+- **Add a key to English first.** The `tr` mirrors are typed against the English objects,
+  so `npm run typecheck` is what catches an untranslated key — not a blank page.
+- Never hardcode user-facing strings in components, in either language.
+- Adding a third language = one entry in `locales.ts`, one mirror file per content file,
+  one row in each map in `content/index.ts`. No component changes.
+- The diagram SVGs are language-independent; only their caption bars
+  (`copy.caseStudy.diagrams`) are translated. Tech-list subtitles stay as-is.
 
 ## Design
 

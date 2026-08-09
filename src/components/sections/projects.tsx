@@ -1,23 +1,24 @@
 import { Reveal } from "@/components/motion/reveal";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
-import { copy } from "@/content/copy";
-import { projects } from "@/content/projects";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 
 /**
  * The card-wide link has no hover affordance on touch, so below `sm` the CTA
  * takes a button's outline to look tappable; from `sm` up it is plain text again.
  */
-function CardCta() {
+function CardCta({ label }: { label: string }) {
   return (
     <div className="inline-flex items-center gap-1.5 rounded-[10px] border border-accent-border px-3.5 py-2 font-mono text-[12.5px] font-medium text-accent-link sm:rounded-none sm:border-0 sm:px-0 sm:py-0">
-      {copy.projects.cta}
+      {label}
       <span aria-hidden>→</span>
     </div>
   );
 }
 
-export function Projects() {
+export function Projects({ locale }: { locale: Locale }) {
+  const { copy, projects } = getContent(locale);
   const featured = projects.find((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
@@ -36,7 +37,7 @@ export function Projects() {
       <div className="flex flex-col gap-5">
         {featured && (
           <Reveal>
-            <ProjectCard href={`/projects/${featured.slug}`} className="p-7 sm:p-9">
+            <ProjectCard href={`/${locale}/projects/${featured.slug}/`} className="p-7 sm:p-9">
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-11">
                 <div>
                   <div className="flex items-center gap-2.5 font-mono text-[11.5px] tracking-[0.06em] text-accent uppercase">
@@ -67,7 +68,7 @@ export function Projects() {
                   )}
 
                   <div className="mt-6.5">
-                    <CardCta />
+                    <CardCta label={copy.projects.cta} />
                   </div>
                 </div>
 
@@ -87,7 +88,10 @@ export function Projects() {
         <div className="grid gap-5 lg:grid-cols-2">
           {rest.map((project, i) => (
             <Reveal key={project.slug} index={i + 1}>
-              <ProjectCard href={`/projects/${project.slug}`} className="h-full p-6 sm:p-8">
+              <ProjectCard
+                href={`/${locale}/projects/${project.slug}/`}
+                className="h-full p-6 sm:p-8"
+              >
                 <div className="font-mono text-[11.5px] tracking-[0.06em] text-ink-label uppercase">
                   {project.category}
                 </div>
@@ -104,7 +108,7 @@ export function Projects() {
                 </ul>
 
                 <div className="mt-5.5">
-                  <CardCta />
+                  <CardCta label={copy.projects.cta} />
                 </div>
               </ProjectCard>
             </Reveal>

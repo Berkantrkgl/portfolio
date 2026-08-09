@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { copy } from "@/content/copy";
+import { LocaleSwitcher } from "@/components/locale-switcher";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 import { site } from "@/content/site";
 
 const SECTIONS = ["about", "career", "projects", "education"] as const;
@@ -28,13 +30,15 @@ function DownloadIcon() {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ locale }: { locale: Locale }) {
   const pathname = usePathname();
+  const { copy } = getContent(locale);
+  const home = `/${locale}/`;
   const [shrunk, setShrunk] = useState(false);
   const [active, setActive] = useState<SectionId | null>(null);
 
   /** Only the home page has the anchor sections. */
-  const isHome = pathname === "/";
+  const isHome = pathname === home || pathname === `/${locale}`;
 
   useEffect(() => {
     let frame: number | null = null;
@@ -89,12 +93,15 @@ export function SiteHeader() {
           transitionTimingFunction: "cubic-bezier(0.2, 0.7, 0.2, 1)",
         }}
       >
-        <Link href="/" className="flex shrink-0 items-center gap-2.5 text-ink">
-          <span className="size-2.5 rounded-[2px] bg-accent" />
-          <span className="text-[15px] font-extrabold tracking-[-0.02em]">{site.name}</span>
+        {/* The name yields first when the row runs out of width; the actions don't. */}
+        <Link href={home} className="flex min-w-0 items-center gap-2.5 text-ink">
+          <span className="size-2.5 shrink-0 rounded-[2px] bg-accent" />
+          <span className="truncate text-[15px] font-extrabold tracking-[-0.02em]">
+            {site.name}
+          </span>
         </Link>
 
-        <nav className="flex items-center gap-1">
+        <nav className="flex shrink-0 items-center gap-1">
           {isHome && (
             <div className="hidden items-center gap-1 md:flex">
               {navLinks.map(({ id, label }) => (
@@ -124,11 +131,15 @@ export function SiteHeader() {
           <a
             href={site.resume}
             download={site.resumeFilename}
-            className="ml-1.5 flex items-center gap-2 rounded-full bg-ink py-2 pr-4 pl-3.5 text-sm font-bold text-inverse transition-colors hover:bg-accent"
+            className="flex shrink-0 items-center gap-2 rounded-full bg-ink py-2 pr-3.5 pl-3 text-sm font-bold text-inverse transition-colors hover:bg-accent sm:ml-1.5 sm:pr-4 sm:pl-3.5"
           >
             <DownloadIcon />
             {copy.nav.resume}
           </a>
+
+          <div className="ml-1 sm:ml-1.5">
+            <LocaleSwitcher current={locale} />
+          </div>
         </nav>
       </div>
     </header>

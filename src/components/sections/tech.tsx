@@ -1,14 +1,15 @@
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { copy } from "@/content/copy";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 
 /**
  * One row per group: the label and a line of context on the left, the tokens
  * as chips on the right. Rows read as a list rather than four equal cards,
  * which lets the Java group sit first and carry visible weight.
  */
-export function Tech() {
-  const { tech } = copy;
+export function Tech({ locale }: { locale: Locale }) {
+  const { tech } = getContent(locale).copy;
 
   return (
     <section id="about" className="scroll-mt-20 border-t border-border-soft py-16 lg:py-20">
@@ -49,17 +50,6 @@ export function Tech() {
           </Reveal>
         ))}
       </div>
-
-      <Reveal index={4} className="mt-8 flex flex-wrap gap-2.5">
-        {tech.pills.map((pill) => (
-          <span
-            key={pill}
-            className="rounded-full border border-border px-3 py-[7px] font-mono text-xs text-ink-nav"
-          >
-            {pill}
-          </span>
-        ))}
-      </Reveal>
     </section>
   );
 }

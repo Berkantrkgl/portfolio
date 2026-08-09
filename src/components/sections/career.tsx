@@ -1,9 +1,10 @@
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { copy } from "@/content/copy";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 
-export function Career() {
-  const { career } = copy;
+export function Career({ locale }: { locale: Locale }) {
+  const { career } = getContent(locale).copy;
 
   return (
     <section id="career" className="scroll-mt-20 py-16 lg:py-22">

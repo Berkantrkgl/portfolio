@@ -1,21 +1,28 @@
-import { Career } from "@/components/sections/career";
-import { ContactCta } from "@/components/sections/contact-cta";
-import { Education } from "@/components/sections/education";
-import { Intro } from "@/components/sections/intro";
-import { Marquee } from "@/components/sections/marquee";
-import { Projects } from "@/components/sections/projects";
-import { Tech } from "@/components/sections/tech";
+import type { Metadata } from "next";
 
-export default function HomePage() {
+import { defaultLocale } from "@/content/locales";
+
+const target = `/${defaultLocale}/`;
+
+/**
+ * `/` is not a real page — it only forwards to the default locale. A static
+ * export has no server to redirect with, so the redirect is a meta refresh
+ * plus a visible link for anyone who lands here with JS and refresh disabled.
+ */
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+  alternates: { canonical: target },
+};
+
+export default function RootRedirect() {
   return (
-    <>
-      <Intro />
-      <Tech />
-      <Marquee />
-      <Career />
-      <Projects />
-      <Education />
-      <ContactCta />
-    </>
+    <html lang={defaultLocale}>
+      <head>
+        <meta httpEquiv="refresh" content={`0; url=${target}`} />
+      </head>
+      <body>
+        <a href={target}>Continue to the site</a>
+      </body>
+    </html>
   );
 }

@@ -1,8 +1,11 @@
 import { Reveal } from "@/components/motion/reveal";
-import { copy } from "@/content/copy";
+import { getContent } from "@/content";
+import type { Locale } from "@/content/locales";
 import { site } from "@/content/site";
 
-export function ContactCta() {
+export function ContactCta({ locale }: { locale: Locale }) {
+  const { copy } = getContent(locale);
+
   return (
     <Reveal as="section" className="mt-10">
       <div className="flex flex-wrap items-center justify-between gap-8 rounded-[20px] bg-ink px-8 py-14 text-inverse sm:px-14 sm:py-18">
