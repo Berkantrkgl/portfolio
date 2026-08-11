@@ -13,7 +13,7 @@ export function Education({ locale }: { locale: Locale }) {
   const { education } = getContent(locale).copy;
 
   return (
-    <section id="education" className="scroll-mt-20 py-16 lg:pt-22 lg:pb-10">
+    <section id="education" className="py-16 lg:pt-22 lg:pb-10">
       <SectionHeading label={education.label} heading={education.heading} />
 
       <div className="flex flex-col">

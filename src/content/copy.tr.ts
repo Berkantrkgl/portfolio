@@ -19,18 +19,20 @@ export const copyTr: typeof copyEn = {
     education: "Eğitim",
     contact: "İletişim",
     resume: "CV",
+    menuOpen: "Menüyü aç",
+    menuClose: "Menüyü kapat",
   },
 
   intro: {
     /** Three lines; the middle one is accent-coloured. */
     headline: ["Merhaba, ben Berkan —", "Backend & Cloud Engineer", "olarak çalışıyorum."],
     paragraphs: [
-      "Son 1,5 yıldır İstanbul'da, Novadsa adlı bir bulut danışmanlık firmasında Cloud Engineer olarak çalışmaktayım. Danışanlarımızın ihtiyaçlarına yönelik; data lake / data warehouse çözümleri, altyapı modernizasyonu ve chatbot ürünleri geliştirme gibi geniş bir yelpazede hizmet veriyoruz. Geliştirdiğimiz uygulamaları containerize ederek AWS üzerinde ECS ya da EKS üzerinden production ortamına sunuyoruz. Projelerimizi genellikle Python ile yazıyoruz; backend tarafında ağırlıklı olarak Django kullanıyoruz, veri ve AI odaklı servislerde ise FastAPI'ye yöneliyoruz. LLM agent'larını AWS Bedrock ve LangGraph ile kuruyorum. Yazdığım sistemin canlıya çıkışını ve sonrasını da ben takip ediyorum.",
+      "Yaklaşık 2 yıldır İstanbul'da, Novadsa adlı bir bulut danışmanlık firmasında Cloud Engineer olarak çalışmaktayım. Danışanlarımızın ihtiyaçlarına yönelik; data lake / data warehouse çözümleri, altyapı modernizasyonu ve chatbot ürünleri geliştirme gibi geniş bir yelpazede hizmet veriyoruz. Geliştirdiğimiz uygulamaları containerize ederek AWS üzerinde ECS ya da EKS üzerinden production ortamına sunuyoruz. Projelerimizi genellikle Python ile yazıyoruz; backend tarafında ağırlıklı olarak Django kullanıyoruz, veri ve AI odaklı servislerde ise FastAPI'ye yöneliyoruz. LLM agent'larını AWS Bedrock ve LangGraph ile kuruyorum. Yazdığım sistemin canlıya çıkışını ve sonrasını da ben takip ediyorum.",
       "Hedefim **Java ve Spring Boot**; güncel olarak bunu aktif şekilde öğreniyorum ve kendi kişisel projelerimde kullanmaya başladım — örneğin QuitQOS uygulamasının backend'ini tamamen Spring Boot ile geliştirdim: domain modelleme, REST API tasarımı, Spring Security ile authentication ve iş mantığını gerçekten kapsayan testler. Python tarafında ise kurumsal projelerden gelen sağlam bir geçmişim var.",
     ],
     stats: [
       /** Rendered uppercase; "production" would become "PRODUCTİON" in a tr locale. */
-      { value: 1.5, decimals: 1, suffix: "+", caption: "Yıllık deneyim" },
+      { value: 2, decimals: 0, suffix: "", caption: "Yıllık deneyim" },
       { value: 2, decimals: 0, suffix: "×", caption: "AWS sertifikası" },
     ],
     currentlyLabel: "Şu sıralar",
@@ -105,11 +107,11 @@ export const copyTr: typeof copyEn = {
         company: "NovaDSA",
         role: "Cloud Engineer",
         bullets: [
-          "Amazon EKS üzerinde çalışan çoklu chatbot platformunun CI/CD ve GitOps altyapısını kurdum: ArgoCD App of Apps yapısı, autoscaling için Karpenter, IRSA ve External Secrets Operator.",
-          "Bunun arkasındaki delivery pipeline'ını yazdım — GitLab CI → CodeBuild → ECR → ArgoCD Image Updater — böylece Kubernetes'e deploy'lar elle değil, declarative olarak ilerliyor.",
-          "Matlı Yem için AI analitik chatbot'u geliştirdim; LangGraph ve Bedrock agent'larını veri tarafında OpenSearch ve Databricks ile birleştirdim.",
-          "MEF Üniversitesi için AI chatbot geliştirdim: Django/LTI üzerinde LangGraph ve FastAPI, Next.js arayüz ve Bedrock/Cohere embedding'leriyle OpenSearch hybrid search.",
-          "Çok servisli deployment'lar için AWS network tasarımını yaptım: host-based routing'li ortak ALB, ACM sertifikaları, autoscaling ve cross-account IAM.",
+          "Amazon EKS üzerinde çalışan çoklu chatbot platformunun CI/CD ve GitOps altyapısını kurdum: ArgoCD ile App of Apps yapısı, autoscaling için Karpenter, yetkilendirme için IRSA ve secret yönetimi için External Secrets Operator.",
+          "Bunun arkasındaki delivery pipeline'ını da ben yazdım — GitLab CI → CodeBuild → ECR → ArgoCD Image Updater — böylece Kubernetes'e deploy'lar manuel değil, tamamen declarative şekilde ilerliyor.",
+          "Matlı Yem için bir AI analitik chatbot'u geliştirdim; LangGraph ve Bedrock agent'larını veri katmanında OpenSearch ve Databricks ile birleştirdim.",
+          "MEF Üniversitesi için bir AI chatbot geliştirdim: Django/LTI üzerine kurulu LangGraph + FastAPI servisi, Next.js arayüzü ve Bedrock/Cohere embedding'leriyle çalışan OpenSearch hybrid search.",
+          "Çok servisli deployment'lar için AWS network tasarımını da ben yaptım: host-based routing kullanan ortak bir ALB, ACM sertifikaları, autoscaling ve cross-account IAM.",
         ],
         tags: ["AWS EKS", "ArgoCD", "Karpenter", "Bedrock", "LangGraph", "OpenSearch"],
       },

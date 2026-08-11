@@ -31,17 +31,20 @@ export const copy = {
     education: "Education",
     contact: "Contact",
     resume: "CV",
+    /** Screen-reader labels on the mobile menu toggle. */
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
   },
 
   intro: {
     /** Three lines; the middle one is accent-coloured. */
     headline: ["Hi, I'm Berkan —", "Backend & Cloud Engineer", "based in Istanbul."],
     paragraphs: [
-      "For the past 1.5 years I've been a Cloud Engineer at Novadsa, a cloud consultancy in Istanbul. We cover a fairly wide range for our clients: data lake and data warehouse solutions, infrastructure modernisation, and chatbot products. We containerise what we build and put it into production on AWS, on ECS or EKS. Most of our work is Python — Django for the backend, FastAPI where the service is data- or AI-heavy. I build the LLM agents with AWS Bedrock and LangGraph, and I'm the one who takes a system live and looks after it afterwards.",
+      "For close to 2 years I've been a Cloud Engineer at Novadsa, a cloud consultancy in Istanbul. We cover a fairly wide range for our clients: data lake and data warehouse solutions, infrastructure modernisation, and chatbot products. We containerise what we build and put it into production on AWS, on ECS or EKS. Most of our work is Python — Django for the backend, FastAPI where the service is data- or AI-heavy. I build the LLM agents with AWS Bedrock and LangGraph, and I'm the one who takes a system live and looks after it afterwards.",
       "Where I'm heading is **Java and Spring Boot**. I'm actively learning it and already using it in my own projects — the QuitQOS backend is entirely Spring Boot: domain modelling, REST API design, authentication with Spring Security, and tests that actually cover the business logic. On the Python side I have solid experience from enterprise client work.",
     ],
     stats: [
-      { value: 1.5, decimals: 1, suffix: "+", caption: "Years in production" },
+      { value: 2, decimals: 0, suffix: "", caption: "Years in production" },
       { value: 2, decimals: 0, suffix: "×", caption: "AWS certified" },
     ],
     currentlyLabel: "Currently",
@@ -116,11 +119,11 @@ export const copy = {
         company: "NovaDSA",
         role: "Cloud Engineer",
         bullets: [
-          "Architected the CI/CD and GitOps foundation for a multi-chatbot platform on Amazon EKS: ArgoCD's App of Apps pattern, Karpenter for autoscaling, IRSA and External Secrets Operator.",
-          "Built the delivery pipeline behind it — GitLab CI → CodeBuild → ECR → ArgoCD Image Updater — so deployments to Kubernetes are declarative rather than manual.",
-          "Delivered an AI analytics chatbot for Matlı Yem, combining LangGraph and Bedrock agents with OpenSearch and Databricks underneath.",
-          "Built an AI chatbot for MEF University: LangGraph and FastAPI against Django/LTI, a Next.js front end, and OpenSearch hybrid search over Bedrock and Cohere embeddings.",
-          "Designed the AWS networking for multi-service deployments: a shared ALB with host-based routing, ACM certificates, autoscaling and cross-account IAM.",
+          "Built the CI/CD and GitOps foundation for a multi-chatbot platform on Amazon EKS: ArgoCD's App of Apps pattern, Karpenter for autoscaling, IRSA for authorisation and External Secrets Operator for secret management.",
+          "Wrote the delivery pipeline behind it as well — GitLab CI → CodeBuild → ECR → ArgoCD Image Updater — so deployments to Kubernetes are fully declarative rather than manual.",
+          "Built an AI analytics chatbot for Matlı Yem, combining LangGraph and Bedrock agents with OpenSearch and Databricks in the data layer.",
+          "Built an AI chatbot for MEF University: a LangGraph + FastAPI service on top of Django/LTI, a Next.js front end, and OpenSearch hybrid search running on Bedrock and Cohere embeddings.",
+          "Designed the AWS networking for multi-service deployments as well: a shared ALB with host-based routing, ACM certificates, autoscaling and cross-account IAM.",
         ],
         tags: ["AWS EKS", "ArgoCD", "Karpenter", "Bedrock", "LangGraph", "OpenSearch"],
       },

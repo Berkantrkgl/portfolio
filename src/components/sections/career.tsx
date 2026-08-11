@@ -7,7 +7,7 @@ export function Career({ locale }: { locale: Locale }) {
   const { career } = getContent(locale).copy;
 
   return (
-    <section id="career" className="scroll-mt-20 py-16 lg:py-22">
+    <section id="career" className="py-16 lg:py-22">
       <SectionHeading label={career.label} heading={career.heading} />
 
       <div className="flex flex-col">

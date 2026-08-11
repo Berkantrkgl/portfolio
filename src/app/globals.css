@@ -76,8 +76,19 @@
     box-sizing: border-box;
   }
 
-  html {
+  /*
+     Clears the sticky header on anchor jumps. Declared on both elements
+     because `body` sets `overflow-x: hidden` (for the full-bleed marquee),
+     which promotes it to the scroll container.
+
+     In-page nav clicks don't rely on this — the header measures its own
+     height and scrolls in JS (see `scrollToSection`), which stays correct
+     as the bar shrinks. This covers arriving at a `#section` URL directly.
+  */
+  html,
+  body {
     scroll-behavior: smooth;
+    scroll-padding-top: 68px;
   }
 
   body {
@@ -258,7 +269,8 @@
 /* --- Reduced motion neutralises everything --- */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html,
+  body {
     scroll-behavior: auto;
   }
 
@@ -282,5 +294,15 @@
   [data-edge] {
     stroke-dashoffset: 0 !important;
     animation: none !important;
+  }
+
+  /*
+     The mobile menu snaps instead of sliding. Only the duration is dropped —
+     zeroing `transform` here would leave the toggle stuck as a hamburger
+     while the panel is open.
+  */
+  [data-mobile-menu],
+  [data-mobile-menu-icon] {
+    transition-duration: 0.01ms !important;
   }
 }

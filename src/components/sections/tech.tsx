@@ -12,7 +12,7 @@ export function Tech({ locale }: { locale: Locale }) {
   const { tech } = getContent(locale).copy;
 
   return (
-    <section id="about" className="scroll-mt-20 border-t border-border-soft py-16 lg:py-20">
+    <section id="about" className="border-t border-border-soft py-16 lg:py-20">
       <SectionHeading label={tech.label} heading={tech.heading} />
 
       <div className="flex flex-col">

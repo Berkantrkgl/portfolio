@@ -15,7 +15,14 @@ function swapLocale(pathname: string, locale: Locale) {
   return `/${segments.join("/")}/`;
 }
 
-export function LocaleSwitcher({ current }: { current: Locale }) {
+export function LocaleSwitcher({
+  current,
+  onNavigate,
+}: {
+  current: Locale;
+  /** Lets the header dismiss its mobile panel when a switch navigates away. */
+  onNavigate?: () => void;
+}) {
   const pathname = usePathname();
 
   return (
@@ -31,6 +38,7 @@ export function LocaleSwitcher({ current }: { current: Locale }) {
             key={locale}
             href={swapLocale(pathname, locale)}
             hrefLang={locale}
+            onClick={onNavigate}
             aria-current={active ? "true" : undefined}
             className={`rounded-full px-2 py-1 font-mono text-[11px] font-medium transition-colors sm:px-2.5 sm:text-[11.5px] ${
               active

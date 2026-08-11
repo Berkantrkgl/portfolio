@@ -23,7 +23,7 @@ export function Projects({ locale }: { locale: Locale }) {
   const rest = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="scroll-mt-20 py-16 lg:py-22">
+    <section id="projects" className="py-16 lg:py-22">
       <SectionHeading
         label={copy.projects.label}
         heading={copy.projects.heading}
