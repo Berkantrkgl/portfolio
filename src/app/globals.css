@@ -77,17 +77,16 @@
   }
 
   /*
-     Clears the sticky header on anchor jumps. Declared on both elements
-     because `body` sets `overflow-x: hidden` (for the full-bleed marquee),
-     which promotes it to the scroll container.
+     Clears the sticky header when arriving at a `#section` URL directly.
+     Declared on both elements because `body` sets `overflow-x: hidden` (for
+     the full-bleed marquee), which promotes it to the scroll container.
 
-     In-page nav clicks don't rely on this — the header measures its own
-     height and scrolls in JS (see `scrollToSection`), which stays correct
-     as the bar shrinks. This covers arriving at a `#section` URL directly.
+     Deliberately NO `scroll-behavior: smooth`: in-page nav is animated in JS
+     (see `scrollToSection`), and the native curve would layer its own easing
+     over every frame of it — which is what made the jump feel sluggish.
   */
   html,
   body {
-    scroll-behavior: smooth;
     scroll-padding-top: 68px;
   }
 
@@ -269,11 +268,6 @@
 /* --- Reduced motion neutralises everything --- */
 
 @media (prefers-reduced-motion: reduce) {
-  html,
-  body {
-    scroll-behavior: auto;
-  }
-
   .animate-rise,
   .animate-line-in,
   .animate-marquee,
